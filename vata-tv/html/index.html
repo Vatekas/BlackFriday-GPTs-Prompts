@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vata-tv</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000; /* Black background to prevent flickering */
+        }
+        #video-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            /* To avoid pixelation and ensure crispness */
+            image-rendering: -webkit-optimize-contrast;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <!-- Iframe for YouTube or raw video embedding -->
+        <iframe id="video-frame" src="" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        // Listen for NUI messages from client.lua
+        window.addEventListener('message', function(event) {
+            var data = event.data;
+
+            if (data.type === 'playVideo') {
+                var url = data.url;
+                var frame = document.getElementById('video-frame');
+
+                // Helper to extract YouTube ID
+                function getYouTubeId(url) {
+                    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+                    var match = url.match(regExp);
+                    return (match && match[2].length === 11) ? match[2] : null;
+                }
+
+                var ytId = getYouTubeId(url);
+
+                if (ytId) {
+                    // It's a YouTube video, embed it correctly and mute it
+                    // The volume is controlled by xsound, so we mute the HTML video
+                    frame.src = "https://www.youtube.com/embed/" + ytId + "?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0";
+                } else {
+                    // Standard raw video/audio URL (also muted to avoid echo)
+                    frame.src = url;
+                    // Note: raw URLs in iframe won't autoplay muted cleanly without an actual <video> tag,
+                    // but for general use case iframe works if it's embeddable.
+                }
+            } else if (data.type === 'stopVideo') {
+                document.getElementById('video-frame').src = "";
+            }
+        });
+    </script>
+</body>
+</html>
