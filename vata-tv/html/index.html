@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vata TV</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app" style="display: none;">
+        <div class="tv-container">
+            <div class="tv-screen">
+                <div class="header">
+                    <div class="time">12:00</div>
+                    <div class="close-btn" id="close-btn"><i class="fa-solid fa-power-off"></i></div>
+                </div>
+
+                <div class="content" id="content">
+                    <div class="apps-grid" id="home-screen">
+                        <div class="app" data-app="youtube">
+                            <div class="app-icon youtube">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                            <div class="app-name">YouTube</div>
+                        </div>
+                        <div class="app" data-app="spotify">
+                            <div class="app-icon spotify">
+                                <i class="fa-brands fa-spotify"></i>
+                            </div>
+                            <div class="app-name">Spotify</div>
+                        </div>
+                    </div>
+
+                    <div id="input-screen" style="display: none;">
+                        <h2 id="input-title">Enter URL</h2>
+                        <input type="text" id="url-input" placeholder="Paste YouTube link or Video ID here...">
+                        <button id="play-btn">Play</button>
+                        <button id="cancel-btn">Cancel</button>
+                    </div>
+
+                    <div class="iframe-container" id="iframe-container" style="display: none;">
+                        <iframe id="browser-frame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="back-btn" id="back-btn"><i class="fa-solid fa-house"></i> Home</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tv-frame"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
