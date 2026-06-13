@@ -9,42 +9,53 @@
 </head>
 <body>
     <div id="phone-container" class="hidden">
-        <div class="iphone-frame">
-            <div class="screen">
-                <!-- Status Bar -->
-                <div class="status-bar">
-                    <div class="time">19:46</div>
-                    <div class="dynamic-island"></div>
-                    <div class="status-icons">
-                        <i class="fa-solid fa-signal"></i>
-                        <i class="fa-solid fa-battery-full"></i>
-                    </div>
-                </div>
+        <div class="phone-hardware">
+            <!-- Hardware Buttons -->
+            <div class="button button-left mute-btn"></div>
+            <div class="button button-left vol-up-btn"></div>
+            <div class="button button-left vol-down-btn"></div>
+            <div class="button button-right power-btn"></div>
 
-                <!-- Setup Screen -->
-                <div id="setup-screen" class="screen-view">
-                    <div class="logo-container">
-                        <div class="lunax-logo">LUNAX</div>
-                    </div>
-
-                    <div class="setup-header">
-                        <h1>Hello</h1>
-                        <div class="subtitle-container">
-                            <i class="fa-solid fa-globe"></i>
-                            <p>Select your language</p>
+            <div class="iphone-frame">
+                <div class="screen">
+                    <!-- Status Bar -->
+                    <div class="status-bar">
+                        <div class="time">19:46</div>
+                        <div class="dynamic-island">
+                            <div class="camera-dot"></div>
+                        </div>
+                        <div class="status-icons">
+                            <i class="fa-solid fa-signal"></i>
+                            <i class="fa-solid fa-wifi"></i>
+                            <i class="fa-solid fa-battery-full"></i>
                         </div>
                     </div>
 
-                    <div class="language-list">
-                        <button class="lang-btn" data-lang="lt">
-                            <div class="lang-info">Lietuvių</div>
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </button>
+                    <!-- Setup Screen -->
+                    <div id="setup-screen" class="screen-view">
+                        <div class="logo-container">
+                            <div class="lunax-logo">LUNA<span class="blue-x">X</span></div>
+                        </div>
+
+                        <div class="setup-header">
+                            <h1>Sveiki</h1>
+                            <div class="subtitle-container">
+                                <i class="fa-solid fa-globe"></i>
+                                <p>Pasirinkite kalbą</p>
+                            </div>
+                        </div>
+
+                        <div class="language-list">
+                            <button class="lang-btn" data-lang="lt">
+                                <div class="lang-info">Lietuvių</div>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="home-indicator"></div>
+                <div class="home-indicator"></div>
+            </div>
         </div>
     </div>
 
