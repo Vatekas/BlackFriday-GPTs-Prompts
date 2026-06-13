@@ -5,40 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vata-Phone Setup</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Using FontAwesome for simple icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div id="phone-container" class="hidden">
         <div class="iphone-frame">
-            <div class="notch">
-                <div class="camera"></div>
-                <div class="speaker"></div>
-            </div>
-
             <div class="screen">
-                <!-- Boot Screen -->
-                <div id="boot-screen" class="screen-view">
-                    <div class="lunax-logo">LUNAX</div>
+                <!-- Status Bar -->
+                <div class="status-bar">
+                    <div class="time">19:46</div>
+                    <div class="dynamic-island"></div>
+                    <div class="status-icons">
+                        <i class="fa-solid fa-signal"></i>
+                        <i class="fa-solid fa-battery-full"></i>
+                    </div>
                 </div>
 
                 <!-- Setup Screen -->
-                <div id="setup-screen" class="screen-view hidden">
+                <div id="setup-screen" class="screen-view">
+                    <div class="logo-container">
+                        <div class="lunax-logo">LUNAX</div>
+                    </div>
+
                     <div class="setup-header">
-                        <i class="fa-solid fa-globe"></i>
-                        <h1>Select Language</h1>
-                        <p>Choose your preferred language to continue.</p>
+                        <h1>Hello</h1>
+                        <div class="subtitle-container">
+                            <i class="fa-solid fa-globe"></i>
+                            <p>Select your language</p>
+                        </div>
                     </div>
 
                     <div class="language-list">
                         <button class="lang-btn" data-lang="lt">
-                            <div class="lang-info">
-                                <span class="lang-flag">🇱🇹</span>
-                                <span class="lang-name">Lithuanian</span>
-                            </div>
+                            <div class="lang-info">Lietuvių</div>
                             <i class="fa-solid fa-chevron-right"></i>
                         </button>
-                        <!-- Other languages can be added here later -->
                     </div>
                 </div>
             </div>

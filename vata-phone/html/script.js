@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const phoneContainer = document.getElementById('phone-container');
-    const bootScreen = document.getElementById('boot-screen');
-    const setupScreen = document.getElementById('setup-screen');
     const langButtons = document.querySelectorAll('.lang-btn');
 
     // Handle NUI Messages from Lua
@@ -18,38 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openPhone() {
         phoneContainer.classList.remove('hidden');
-
-        // Reset screens
-        bootScreen.classList.remove('hidden');
-        bootScreen.style.opacity = '1';
-        setupScreen.classList.add('hidden');
-        setupScreen.style.opacity = '0';
-
-        // Simulate boot sequence
-        setTimeout(() => {
-            // Fade out boot screen
-            bootScreen.style.opacity = '0';
-
-            setTimeout(() => {
-                bootScreen.classList.add('hidden');
-
-                // Fade in setup screen
-                setupScreen.classList.remove('hidden');
-                // Trigger reflow
-                void setupScreen.offsetWidth;
-                setupScreen.style.opacity = '1';
-            }, 500); // Wait for fade out
-
-        }, 2000); // Show LUNAX logo for 2 seconds
     }
 
     function closePhone() {
         phoneContainer.classList.add('hidden');
-        // Reset state
-        bootScreen.classList.remove('hidden');
-        bootScreen.style.opacity = '1';
-        setupScreen.classList.add('hidden');
-        setupScreen.style.opacity = '0';
     }
 
     // Handle language selection
