@@ -188,14 +188,20 @@ body {
 }
 
 .lunax-logo {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: #333; /* Dark grey for LUNA */
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #4b5563 0%, #111827 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
 }
 
 .blue-x {
-    color: #3b82f6; /* Blue color for X */
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .setup-header {
@@ -206,7 +212,7 @@ body {
 .setup-header h1 {
     font-size: 28px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     color: #000;
 }
 
@@ -216,21 +222,18 @@ body {
     justify-content: center;
     gap: 8px;
     color: #555;
-    background: rgba(255, 255, 255, 0.5);
-    padding: 8px 16px;
-    border-radius: 12px;
-    margin: 0 auto;
-    width: max-content;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    /* Removed background, padding, box-shadow to match the pure text look */
 }
 
 .subtitle-container i {
-    font-size: 16px;
+    font-size: 15px;
+    color: #666;
 }
 
 .subtitle-container p {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
+    color: #555;
 }
 
 .language-list {
