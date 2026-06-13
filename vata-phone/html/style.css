@@ -168,17 +168,17 @@ body {
 
 .icon-signal, .icon-wifi {
     color: #000;
-    width: 14px;
-    height: 10px;
+    width: 16px;
+    height: 11px;
     margin-top: 1px;
 }
 
 .ios-battery {
     position: relative;
-    width: 22px;
-    height: 11px;
-    border: 1px solid rgba(0, 0, 0, 0.4);
-    border-radius: 3px;
+    width: 24px;
+    height: 12px;
+    border: 1px solid #000;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -193,7 +193,7 @@ body {
     transform: translateY(-50%);
     width: 1.5px;
     height: 4px;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: #000;
     border-radius: 0 1px 1px 0;
 }
 
@@ -205,7 +205,7 @@ body {
     bottom: 1px;
     right: 1px;
     background-color: #000;
-    border-radius: 1px;
+    border-radius: 2px;
     z-index: 1;
 }
 
@@ -213,14 +213,23 @@ body {
     position: relative;
     z-index: 2;
     color: #fff;
-    font-size: 8px;
+    font-size: 8.5px;
     font-weight: 700;
     letter-spacing: -0.2px;
     line-height: 1;
 }
 
-/* Setup Screen */
-#setup-screen {
+/* Setup Screens */
+#setup-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.setup-step {
     width: 100%;
     height: 100%;
     display: flex;
@@ -229,6 +238,14 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.setup-step.hidden {
+    display: flex !important; /* Keep display flex for animation but move it away */
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .logo-container {
@@ -315,6 +332,358 @@ body {
 .lang-btn i {
     color: #666;
     font-size: 14px;
+}
+
+/* PIN Screen */
+.pin-subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
+
+.pin-display {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0 40px;
+}
+
+.pin-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid #3b82f6;
+    background-color: transparent;
+    transition: background-color 0.1s ease;
+}
+
+.pin-dot.filled {
+    background-color: #3b82f6;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 0 10px;
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+.keypad-btn {
+    background: rgba(255, 255, 255, 0.6);
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    font-family: inherit;
+    color: #000;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.keypad-btn:active {
+    background: rgba(200, 200, 200, 0.8);
+}
+
+.keypad-btn.empty {
+    background: transparent;
+    box-shadow: none;
+    pointer-events: none;
+}
+
+.keypad-btn.delete {
+    background: transparent;
+    box-shadow: none;
+    font-size: 20px;
+    color: #333;
+}
+
+/* Theme Selection */
+.theme-selection {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.theme-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.theme-option.selected {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.theme-option span {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.theme-preview {
+    width: 80px;
+    height: 160px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.theme-option.selected .theme-preview {
+    border-color: #3b82f6;
+}
+
+.light-preview {
+    background-color: #f2f2f7;
+    background-image: linear-gradient(to bottom, #fff 20%, #f2f2f7 100%);
+}
+
+.dark-preview {
+    background-color: #1c1c1e;
+    background-image: linear-gradient(to bottom, #2c2c2e 20%, #1c1c1e 100%);
+    color: white;
+}
+
+.primary-btn {
+    margin-top: auto;
+    margin-bottom: 20px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.primary-btn:hover {
+    background-color: #2563eb;
+}
+
+/* --- Home Screen --- */
+#home-screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 60px 15px 15px;
+    background-image: linear-gradient(180deg, #a8c0ff 0%, #3f2b96 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px 10px;
+}
+
+.app-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.icon-bg {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.phone-bg {
+    background: linear-gradient(180deg, #34c759 0%, #28a745 100%);
+}
+
+.app-icon span {
+    color: white;
+    font-size: 11px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.dock {
+    margin-top: auto;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+/* --- Phone App Screen --- */
+#phone-app-screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 60px 20px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.phone-app-header {
+    margin-bottom: 20px;
+}
+
+.phone-app-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+}
+
+.my-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: #f2f2f7;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #d1d1d6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+}
+
+.my-info h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: #000;
+}
+
+.my-info p {
+    font-size: 13px;
+    color: #8e8e93;
+    margin: 2px 0 0;
+}
+
+.share-number-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: #e5f0ff;
+    color: #007aff;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.share-number-btn:active {
+    background-color: #cce0ff;
+}
+
+/* --- Call Screen --- */
+#call-screen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 80px 20px 40px;
+    color: white;
+}
+
+.call-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.caller-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+#caller-name {
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0 0 5px;
+}
+
+#call-status {
+    font-size: 16px;
+    color: #ebebf5;
+    opacity: 0.6;
+}
+
+.call-actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+}
+
+.call-btn {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: none;
+    font-size: 28px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.call-btn:active {
+    filter: brightness(0.8);
+}
+
+.end-btn {
+    background-color: #ff3b30;
+}
+
+.answer-btn {
+    background-color: #34c759;
 }
 
 /* Home Indicator */
