@@ -161,13 +161,62 @@ body {
 .status-icons {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
     width: 60px;
     justify-content: flex-end;
 }
 
-.status-icons i {
-    font-size: 11px;
+.icon-signal, .icon-wifi {
+    color: #000;
+    width: 14px;
+    height: 10px;
+    margin-top: 1px;
+}
+
+.ios-battery {
+    position: relative;
+    width: 22px;
+    height: 11px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2px;
+}
+
+.ios-battery::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5px;
+    height: 4px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 0 1px 1px 0;
+}
+
+.ios-battery::before {
+    content: '';
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    bottom: 1px;
+    right: 1px;
+    background-color: #000;
+    border-radius: 1px;
+    z-index: 1;
+}
+
+.ios-battery span {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    line-height: 1;
 }
 
 /* Setup Screen */
