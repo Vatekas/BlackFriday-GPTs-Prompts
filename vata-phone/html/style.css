@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    overflow: hidden; /* Prevent scrollbars in FiveM */
+    background: transparent; /* Keep background transparent for FiveM */
+}
+
+.hidden {
+    display: none !important;
+}
+
+#phone-container {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Center it for setup, then we can move it to corner later if needed */
+    /* bottom: 50%; right: 50%; transform: translate(50%, 50%); */
+
+    /* Using transform to place in center of screen for the setup phase */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* iPhone 14 Frame */
+.iphone-frame {
+    width: 320px;
+    height: 650px;
+    background-color: #1a1a1a;
+    border-radius: 45px;
+    box-shadow: 0 0 0 10px #2c2c2e, 0 0 20px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* The Notch */
+.notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 30px;
+    background-color: #2c2c2e;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.camera {
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    border-radius: 50%;
+    box-shadow: inset 0 0 2px rgba(255,255,255,0.2);
+}
+
+.speaker {
+    width: 40px;
+    height: 4px;
+    background-color: #111;
+    border-radius: 2px;
+}
+
+/* Screen Area */
+.screen {
+    width: 100%;
+    height: 100%;
+    background-color: #0f0f11; /* Dark sleek background */
+    position: relative;
+    border-radius: 35px;
+    overflow: hidden;
+}
+
+.screen-view {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.5s ease;
+}
+
+/* Home Indicator */
+.home-indicator {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+    z-index: 10;
+}
+
+/* Boot Screen (LUNAX) */
+#boot-screen {
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+}
+
+.lunax-logo {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: #e0e0e0;
+    text-shadow: 0 0 10px rgba(255,255,255,0.1);
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+/* Setup Screen (Select Language) */
+#setup-screen {
+    padding: 80px 20px 20px;
+    background-color: #121214;
+    color: #f0f0f0;
+}
+
+.setup-header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: slideUp 0.6s ease-out;
+}
+
+.setup-header i {
+    font-size: 40px;
+    color: #7a7a8c;
+    margin-bottom: 15px;
+}
+
+.setup-header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.setup-header p {
+    font-size: 13px;
+    color: #8e8e93;
+}
+
+.language-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: slideUp 0.8s ease-out;
+}
+
+.lang-btn {
+    background-color: #1c1c1e;
+    border: 1px solid #2c2c2e;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.lang-btn:hover {
+    background-color: #2c2c2e;
+}
+
+.lang-btn:active {
+    transform: scale(0.98);
+}
+
+.lang-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.lang-flag {
+    font-size: 20px;
+}
+
+.lang-name {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.lang-btn i {
+    color: #5c5c66;
+    font-size: 14px;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
