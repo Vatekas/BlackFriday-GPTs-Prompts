@@ -29,8 +29,9 @@ body {
 /* Phone hardware wrapper to hold frame and buttons */
 .phone-hardware {
     position: relative;
-    width: 320px;
-    height: 650px;
+    /* Reduced size for a more compact in-game feel */
+    width: 290px;
+    height: 590px;
 }
 
 /* iPhone Frame */
@@ -65,27 +66,27 @@ body {
 }
 
 .mute-btn {
-    top: 110px;
-    width: 4px;
-    height: 25px;
+    top: 100px;
+    width: 3px;
+    height: 22px;
 }
 
 .vol-up-btn {
-    top: 160px;
-    width: 4px;
-    height: 50px;
+    top: 145px;
+    width: 3px;
+    height: 45px;
 }
 
 .vol-down-btn {
-    top: 225px;
-    width: 4px;
-    height: 50px;
+    top: 205px;
+    width: 3px;
+    height: 45px;
 }
 
 .power-btn {
-    top: 180px;
-    width: 4px;
-    height: 70px;
+    top: 165px;
+    width: 3px;
+    height: 65px;
 }
 
 
@@ -274,13 +275,5 @@ body {
 
 /* Home Indicator */
 .home-indicator {
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 4px;
-    background-color: #000;
-    border-radius: 2px;
-    z-index: 10;
+    display: none; /* Removed as requested */
 }
