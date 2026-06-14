@@ -38,22 +38,22 @@ body {
     content: '';
     position: absolute;
     top: 130px;
-    left: -2px;
+    right: -2px;
     width: 3px;
     height: 30px;
     background-color: #3b3749;
-    border-radius: 2px 0 0 2px;
+    border-radius: 0 2px 2px 0;
 }
 
 .phone-case::after {
     content: '';
     position: absolute;
     top: 180px;
-    left: -2px;
+    right: -2px;
     width: 3px;
     height: 60px;
     background-color: #3b3749;
-    border-radius: 2px 0 0 2px;
+    border-radius: 0 2px 2px 0;
 }
 
 /* Ekranas su gradientu */
@@ -152,14 +152,6 @@ body {
     background-color: #34c759; /* Žalia baterija */
     border-radius: 3px;
 }
-
-.battery-charging {
-    position: absolute;
-    font-size: 9px;
-    color: black;
-    z-index: 2;
-}
-
 
 /* Turinio sritis su pasisveikinimu */
 .content {
