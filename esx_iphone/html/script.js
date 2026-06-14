@@ -3,6 +3,15 @@ window.addEventListener('message', function(event) {
     if (event.data.type === "ui") {
         if (event.data.status) {
             document.getElementById("phone-container").style.display = "flex";
+
+            // Re-trigger the SVG animation by cloning the path element and replacing it
+            const svgPath = document.querySelector('.hello-path');
+            if (svgPath) {
+                svgPath.classList.remove('animate-hello');
+                // Trigger reflow to restart animation
+                void svgPath.offsetWidth;
+                svgPath.classList.add('animate-hello');
+            }
         } else {
             document.getElementById("phone-container").style.display = "none";
         }
