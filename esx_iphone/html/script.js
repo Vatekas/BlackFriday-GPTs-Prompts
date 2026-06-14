@@ -46,3 +46,10 @@ function updateClock() {
 // Paleisti laikrodį ir atnaujinti kas sekundę
 setInterval(updateClock, 1000);
 updateClock(); // Iškviečiame iš karto
+
+// Mock aplinka naršyklei (Live Preview)
+if (!window.invokeNative) {
+    setTimeout(() => {
+        window.postMessage({type: "ui", status: true}, '*');
+    }, 500);
+}
