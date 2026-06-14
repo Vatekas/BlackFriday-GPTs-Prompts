@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone ESX</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="phone-container" style="display: none;">
+        <div class="phone-case">
+            <div class="screen">
+                <div class="dynamic-island">
+                    <div class="camera"></div>
+                </div>
+
+                <div class="status-bar">
+                    <div class="time" id="clock">9:11</div>
+                    <div class="icons">
+                        <i class="fa-solid fa-signal"></i>
+                        <i class="fa-solid fa-wifi"></i>
+                        <div class="battery-icon">
+                            <div class="battery-level"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <div id="hello-container">
+                        <svg class="hello-svg" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                            <!-- "hello" text as a continuous path for drawing animation -->
+                            <path class="hello-path" d="M 30,70
+                                     C 30,40 50,20 60,35
+                                     C 60,60 50,70 50,70
+                                     C 60,65 70,55 75,55
+                                     C 70,70 85,75 90,65
+                                     C 95,50 95,20 105,20
+                                     C 105,70 105,75 110,75
+                                     C 115,75 120,40 120,40
+                                     C 120,70 125,75 130,75
+                                     C 135,75 145,65 145,55
+                                     C 145,45 135,45 130,55
+                                     C 130,65 140,75 150,75
+                                     C 160,75 170,60 170,60"
+                                  stroke="white" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="home-indicator"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
