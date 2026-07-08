@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FiveM ESX HUD Preview</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="hud-container">
+        <!-- Top Right: Server Info & Player Stats -->
+        <div class="top-right">
+            <div class="server-info">
+                <div class="server-logo">
+                    <i class="fa-solid fa-server"></i> VRP.LT
+                </div>
+                <div class="server-details">
+                    <span class="player-id"><i class="fa-solid fa-id-card"></i> ID: 60</span>
+                    <span class="players-online"><i class="fa-solid fa-users"></i> 145/200</span>
+                </div>
+            </div>
+
+            <div class="player-economy">
+                <div class="money-item cash">
+                    <i class="fa-solid fa-wallet"></i> $15,000
+                </div>
+                <div class="money-item bank">
+                    <i class="fa-solid fa-building-columns"></i> $2,500,000
+                </div>
+                <div class="money-item job">
+                    <i class="fa-solid fa-briefcase"></i> Mechanikas - Direktorius
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Center: Location & Compass -->
+        <div class="bottom-center">
+            <div class="compass-container">
+                <span class="compass-dir">ŠR</span>
+            </div>
+            <div class="location-details">
+                <div class="street-name">Alta St</div>
+                <div class="zone-name">Downtown Vinewood</div>
+            </div>
+        </div>
+
+        <!-- Bottom Left: Circular Vitals (Health, Armor, Hunger, Thirst, Stamina, Voice) -->
+        <div class="bottom-left">
+            <!-- Voice -->
+            <div class="vital-ring voice">
+                <svg viewBox="0 0 36 36" class="circular-chart">
+                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <div class="icon"><i class="fa-solid fa-microphone"></i></div>
+            </div>
+            <!-- Health -->
+            <div class="vital-ring health">
+                <svg viewBox="0 0 36 36" class="circular-chart">
+                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <div class="icon"><i class="fa-solid fa-heart"></i></div>
+            </div>
+            <!-- Armor -->
+            <div class="vital-ring armor">
+                <svg viewBox="0 0 36 36" class="circular-chart">
+                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="50, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
+            </div>
+            <!-- Hunger -->
+            <div class="vital-ring hunger">
+                <svg viewBox="0 0 36 36" class="circular-chart">
+                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="80, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <div class="icon"><i class="fa-solid fa-burger"></i></div>
+            </div>
+            <!-- Thirst -->
+            <div class="vital-ring thirst">
+                <svg viewBox="0 0 36 36" class="circular-chart">
+                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="90, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <div class="icon"><i class="fa-solid fa-droplet"></i></div>
+            </div>
+            <!-- Stamina -->
+            <div class="vital-ring stamina">
+                <svg viewBox="0 0 36 36" class="circular-chart">
+                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <div class="icon"><i class="fa-solid fa-person-running"></i></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
