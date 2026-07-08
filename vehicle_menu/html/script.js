@@ -37,6 +37,56 @@ window.addEventListener('message', function(event) {
             engineBtn.style.color = '#fff';
             engineBtn.querySelector('svg').style.color = '#fff';
         }
+
+        // Update main lock button state
+        const lockBtn = document.getElementById('lock-btn');
+        if (lockBtn) {
+            // lockStatus: 1 = unlocked, 2 = locked (usually)
+            const isLocked = data.lockStatus === 2 || data.lockStatus === 3 || data.lockStatus === 4;
+            if (isLocked) {
+                lockBtn.style.color = '#ff3333';
+                lockBtn.querySelector('svg').style.color = '#ff3333';
+                lockBtn.querySelector('svg').classList.remove('fa-lock-open');
+                lockBtn.querySelector('svg').classList.add('fa-lock');
+            } else {
+                lockBtn.style.color = '#b3ff00';
+                lockBtn.querySelector('svg').style.color = '#b3ff00';
+                lockBtn.querySelector('svg').classList.remove('fa-lock');
+                lockBtn.querySelector('svg').classList.add('fa-lock-open');
+            }
+
+            // Sync car icons as well
+            const doorIcons = document.querySelectorAll('.lock-icon i');
+            doorIcons.forEach(icon => {
+                if (isLocked) {
+                    icon.style.color = '#ff3333';
+                } else {
+                    icon.style.color = '#b3ff00';
+                }
+            });
+        }
+
+        // Sync individual door open/closed status if needed
+        if (data.doors) {
+            const doors = document.querySelectorAll('.lock-icon');
+            for (let i = 0; i < 6; i++) {
+                if (doors[i] && data.doors[i.toString()]) {
+                    doors[i].classList.add('open');
+                    doors[i].querySelector('i').classList.remove('fa-lock');
+                    doors[i].querySelector('i').classList.add('fa-lock-open');
+                } else if (doors[i]) {
+                    doors[i].classList.remove('open');
+                    // Icon type handled by global lock sync, but ensure it's correct
+                    if(data.lockStatus === 1) {
+                         doors[i].querySelector('i').classList.remove('fa-lock');
+                         doors[i].querySelector('i').classList.add('fa-lock-open');
+                    } else {
+                         doors[i].querySelector('i').classList.remove('fa-lock-open');
+                         doors[i].querySelector('i').classList.add('fa-lock');
+                    }
+                }
+            }
+        }
     }
 });
 
@@ -96,19 +146,7 @@ function toggleDoor(doorIndex) {
         body: JSON.stringify({ door: doorIndex })
     });
 
-    // Simple visual toggle for the icon in NUI
-    const doors = document.querySelectorAll('.lock-icon');
-    if(doors[doorIndex]) {
-        doors[doorIndex].classList.toggle('open');
-        const icon = doors[doorIndex].querySelector('i');
-        if(doors[doorIndex].classList.contains('open')) {
-            icon.classList.remove('fa-lock');
-            icon.classList.add('fa-lock-open');
-        } else {
-            icon.classList.remove('fa-lock-open');
-            icon.classList.add('fa-lock');
-        }
-    }
+    // UI is optimistically updated by NUI but the update loop will overwrite it with actual state next tick
 }
 
 function toggleInteriorLight() {

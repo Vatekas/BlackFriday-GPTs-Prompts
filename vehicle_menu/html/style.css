@@ -15,8 +15,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 900px;
-    height: 600px;
+    width: 750px;
+    height: 480px;
     display: flex;
     background-color: #111111;
     border-radius: 20px;
@@ -118,7 +118,7 @@ body {
 /* Car Visualization */
 .car-visualization {
     position: relative;
-    height: 300px;
+    height: 240px;
     margin: 20px 0;
     display: flex;
     justify-content: center;
@@ -126,8 +126,8 @@ body {
 }
 
 .car-image {
-    width: 600px;
-    height: 300px;
+    width: 450px;
+    height: 220px;
 }
 
 .lock-icon {
@@ -161,22 +161,22 @@ body {
 }
 
 /* Positions based on the image roughly */
-.lock-icon.fl { top: 70px; left: 240px; }
-.lock-icon.fr { top: 70px; left: 450px; }
-.lock-icon.rl { bottom: 70px; left: 240px; }
-.lock-icon.rr { bottom: 70px; left: 450px; }
-.lock-icon.hood { top: 135px; left: 160px; }
-.lock-icon.trunk { top: 135px; right: 90px; }
+.lock-icon.fl { top: 50px; left: 240px; }
+.lock-icon.fr { top: 50px; left: 400px; }
+.lock-icon.rl { bottom: 50px; left: 240px; }
+.lock-icon.rr { bottom: 50px; left: 400px; }
+.lock-icon.hood { top: 105px; left: 160px; }
+.lock-icon.trunk { top: 105px; right: 110px; }
 
 /* Fuel bar */
 .fuel-bar-container {
     position: absolute;
-    right: 40px;
-    top: 50px;
+    right: 30px;
+    top: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 180px;
+    height: 150px;
 }
 
 .fuel-bar {
@@ -214,7 +214,7 @@ body {
 .control-btn {
     background-color: #1a1a1a;
     border-radius: 12px;
-    padding: 15px;
+    padding: 10px;
     flex: 1;
     display: flex;
     align-items: center;
@@ -242,7 +242,7 @@ body {
 .info-row {
     display: flex;
     gap: 20px;
-    height: 100px;
+    height: 80px;
 }
 
 .info-card {

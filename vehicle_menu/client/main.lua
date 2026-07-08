@@ -72,13 +72,21 @@ function StartUpdateLoop()
                         minute = GetClockMinutes()
                     }
 
+                    local doors = {}
+                    for i = 0, 5 do
+                        doors[tostring(i)] = GetVehicleDoorAngleRatio(vehicle, i) > 0.0
+                    end
+                    local lockStatus = GetVehicleDoorLockStatus(vehicle)
+
                     SendNUIMessage({
                         type = "updateData",
                         street = streetName,
                         temperature = engineTemp,
                         fuel = fuelLevel,
                         engineRunning = engineRunning,
-                        time = time
+                        time = time,
+                        doors = doors,
+                        lockStatus = lockStatus
                     })
                 else
                     -- Auto close if player left vehicle while menu was open

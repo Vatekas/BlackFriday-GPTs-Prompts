@@ -18,7 +18,8 @@ shared_scripts {
 files {
     'html/index.html',
     'html/style.css',
-    'html/script.js'
+    'html/script.js',
+    'html/img/car.png'
 }
 
 client_scripts {
