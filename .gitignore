@@ -4,3 +4,5 @@ update.mjs
 db/
 db.mjs
 /test3.mjs
+node_modules/
+hud/node_modules/
