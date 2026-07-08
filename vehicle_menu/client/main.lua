@@ -1,5 +1,26 @@
 local menuOpen = false
 local updateLoopActive = false
+local wasInVehicle = false
+
+-- Engine auto-start prevention
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(100)
+        local ped = PlayerPedId()
+        local isInVehicle = IsPedInAnyVehicle(ped, false)
+
+        if isInVehicle and not wasInVehicle then
+            local vehicle = GetVehiclePedIsIn(ped, false)
+            if vehicle and vehicle ~= 0 then
+                -- Only disable auto engine start if it wasn't already running
+                if not GetIsVehicleEngineRunning(vehicle) then
+                    SetVehicleEngineOn(vehicle, false, true, true)
+                end
+            end
+        end
+        wasInVehicle = isInVehicle
+    end
+end)
 
 -- Open Menu Command and KeyMapping
 RegisterCommand('openvehiclemenu', function()
@@ -7,8 +28,13 @@ RegisterCommand('openvehiclemenu', function()
     if IsPedInAnyVehicle(ped, false) then
         if not menuOpen then
             SetNuiFocus(true, true)
+
+            local currentLocale = Config.Locale or 'en'
+            local trans = Locales[currentLocale] or Locales['en']
+
             SendNUIMessage({
-                type = "openMenu"
+                type = "openMenu",
+                translations = trans
             })
             menuOpen = true
 
@@ -41,12 +67,18 @@ function StartUpdateLoop()
                     local fuelLevel = GetVehicleFuelLevel(vehicle)
                     local engineRunning = GetIsVehicleEngineRunning(vehicle)
 
+                    local time = {
+                        hour = GetClockHours(),
+                        minute = GetClockMinutes()
+                    }
+
                     SendNUIMessage({
                         type = "updateData",
                         street = streetName,
                         temperature = engineTemp,
                         fuel = fuelLevel,
-                        engineRunning = engineRunning
+                        engineRunning = engineRunning,
+                        time = time
                     })
                 else
                     -- Auto close if player left vehicle while menu was open
@@ -78,7 +110,40 @@ RegisterNUICallback('toggleEngine', function(data, cb)
     local vehicle = GetVehiclePedIsIn(ped, false)
     if vehicle and vehicle ~= 0 then
         local isRunning = GetIsVehicleEngineRunning(vehicle)
-        SetVehicleEngineOn(vehicle, not isRunning, false, true)
+
+        -- If turning ON, show progress bar
+        if not isRunning then
+            local currentLocale = Config.Locale or 'en'
+            local trans = Locales[currentLocale] or Locales['en']
+            local label = trans.starting_engine or 'Starting engine...'
+
+            -- Use ox_lib progress bar if available
+            if lib and lib.progressBar then
+                local success = lib.progressBar({
+                    duration = 2000,
+                    label = label,
+                    useWhileDead = false,
+                    canCancel = true,
+                    disable = {
+                        car = true,
+                    }
+                })
+
+                if success then
+                    -- Verify player is still in the vehicle after progress
+                    local newVehicle = GetVehiclePedIsIn(ped, false)
+                    if newVehicle == vehicle then
+                         SetVehicleEngineOn(vehicle, true, false, true)
+                    end
+                end
+            else
+                -- Fallback if ox_lib isn't correctly loaded somehow
+                SetVehicleEngineOn(vehicle, true, false, true)
+            end
+        else
+            -- Turning off is instant
+            SetVehicleEngineOn(vehicle, false, false, true)
+        end
     end
     cb('ok')
 end)

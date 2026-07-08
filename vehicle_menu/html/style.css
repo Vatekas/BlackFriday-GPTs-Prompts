@@ -232,6 +232,7 @@ body {
     font-size: 14px;
     font-weight: 600;
     text-align: center;
+    white-space: pre-wrap;
 }
 
 /* Hide the fa-engine if it doesn't exist, show cogs */

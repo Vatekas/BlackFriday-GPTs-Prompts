@@ -3,6 +3,19 @@ window.addEventListener('message', function(event) {
 
     if (data.type === "openMenu") {
         document.getElementById('app').style.display = 'flex';
+
+        // Update translations
+        if (data.translations) {
+            if (document.getElementById('lang-weather-title')) document.getElementById('lang-weather-title').innerText = data.translations.weather.toUpperCase();
+            if (document.getElementById('lang-lock')) document.getElementById('lang-lock').innerText = data.translations.lock;
+            if (document.getElementById('lang-seat')) document.getElementById('lang-seat').innerText = data.translations.seat;
+            if (document.getElementById('lang-engine')) document.getElementById('lang-engine').innerText = data.translations.engine;
+            if (document.getElementById('lang-interior')) document.getElementById('lang-interior').innerText = data.translations.interior_light.replace('\\n', '\n');
+            if (document.getElementById('lang-lights')) document.getElementById('lang-lights').innerText = data.translations.lights;
+            if (document.getElementById('lang-engine-temp-label')) document.getElementById('lang-engine-temp-label').innerText = data.translations.engine;
+            if (document.getElementById('lang-emergency')) document.getElementById('lang-emergency').innerText = data.translations.emergency;
+        }
+
     } else if (data.type === "closeMenu") {
         document.getElementById('app').style.display = 'none';
     } else if (data.type === "updateData") {
@@ -10,18 +23,19 @@ window.addEventListener('message', function(event) {
         document.getElementById('engine-temp').innerText = Math.round(data.temperature) || 0;
         document.getElementById('fuel-fill').style.height = (data.fuel || 0) + '%';
 
-        let now = new Date();
-        document.getElementById('time-hour').innerText = String(now.getHours()).padStart(2, '0');
-        document.getElementById('time-minute').innerText = String(now.getMinutes()).padStart(2, '0');
+        if (data.time) {
+            document.getElementById('time-hour').innerText = String(data.time.hour).padStart(2, '0');
+            document.getElementById('time-minute').innerText = String(data.time.minute).padStart(2, '0');
+        }
 
         // Update engine button state
         const engineBtn = document.getElementById('engine-btn');
         if (data.engineRunning) {
             engineBtn.style.color = '#b3ff00';
-            engineBtn.querySelector('i').style.color = '#b3ff00';
+            engineBtn.querySelector('svg').style.color = '#b3ff00';
         } else {
             engineBtn.style.color = '#fff';
-            engineBtn.querySelector('i').style.color = '#fff';
+            engineBtn.querySelector('svg').style.color = '#fff';
         }
     }
 });
