@@ -64,8 +64,38 @@ function StartUpdateLoop()
                     local streetName = GetStreetNameFromHashKey(streetHash)
 
                     local engineTemp = GetVehicleEngineTemperature(vehicle)
-                    local fuelLevel = GetVehicleFuelLevel(vehicle)
+                    local fuelLevel = math.floor(GetVehicleFuelLevel(vehicle) + 0.5)
                     local engineRunning = GetIsVehicleEngineRunning(vehicle)
+
+                    local waypointDistance = 0
+                    if IsWaypointActive() then
+                        local waypointCoords = GetBlipCoords(GetFirstBlipInfoId(8))
+                        local distance = #(coords - waypointCoords)
+                        waypointDistance = math.floor(distance)
+                    end
+
+                    local weatherHash = GetNextWeatherTypeHashName()
+                    local weatherName = "CLEAR"
+                    if weatherHash == GetHashKey("EXTRASUNNY") or weatherHash == GetHashKey("CLEAR") or weatherHash == GetHashKey("NEUTRAL") then
+                        weatherName = "CLEAR"
+                    elseif weatherHash == GetHashKey("CLOUDS") or weatherHash == GetHashKey("OVERCAST") then
+                        weatherName = "CLOUDY"
+                    elseif weatherHash == GetHashKey("SMOG") or weatherHash == GetHashKey("FOGGY") then
+                        weatherName = "FOGGY"
+                    elseif weatherHash == GetHashKey("RAIN") then
+                        weatherName = "RAIN"
+                    elseif weatherHash == GetHashKey("THUNDER") then
+                        weatherName = "THUNDER"
+                    elseif weatherHash == GetHashKey("CLEARING") then
+                        weatherName = "CLEARING"
+                    elseif weatherHash == GetHashKey("SNOW") or weatherHash == GetHashKey("SNOWLIGHT") then
+                        weatherName = "SNOW"
+                    elseif weatherHash == GetHashKey("BLIZZARD") then
+                        weatherName = "BLIZZARD"
+                    elseif weatherHash == GetHashKey("HALLOWEEN") then
+                        weatherName = "SPOOKY"
+                    end
+
 
                     local time = {
                         hour = GetClockHours(),
@@ -86,7 +116,9 @@ function StartUpdateLoop()
                         engineRunning = engineRunning,
                         time = time,
                         doors = doors,
-                        lockStatus = lockStatus
+                        lockStatus = lockStatus,
+                        waypoint = waypointDistance,
+                        weather = weatherName
                     })
                 else
                     -- Auto close if player left vehicle while menu was open

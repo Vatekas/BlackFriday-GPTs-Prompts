@@ -22,11 +22,32 @@ window.addEventListener('message', function(event) {
         document.getElementById('street-name').innerText = data.street || "Unknown Road";
         document.getElementById('engine-temp').innerText = Math.round(data.temperature) || 0;
         document.getElementById('fuel-fill').style.height = (data.fuel || 0) + '%';
+        document.getElementById('heading').innerText = data.waypoint + 'm';
 
-        if (data.time) {
-            document.getElementById('time-hour').innerText = String(data.time.hour).padStart(2, '0');
-            document.getElementById('time-minute').innerText = String(data.time.minute).padStart(2, '0');
+        if (data.weather) {
+            const weatherEl = document.querySelector('.weather-value');
+            if (weatherEl) weatherEl.innerText = data.weather;
+
+            const weatherIcon = document.querySelector('.weather i');
+            if (weatherIcon) {
+                weatherIcon.className = 'fa-solid';
+                if (data.weather === 'RAIN' || data.weather === 'THUNDER' || data.weather === 'CLEARING') {
+                    weatherIcon.classList.add('fa-cloud-rain');
+                } else if (data.weather === 'CLOUDY') {
+                    weatherIcon.classList.add('fa-cloud');
+                } else if (data.weather === 'FOGGY' || data.weather === 'SPOOKY') {
+                    weatherIcon.classList.add('fa-smog');
+                } else if (data.weather === 'SNOW' || data.weather === 'BLIZZARD') {
+                    weatherIcon.classList.add('fa-snowflake');
+                } else {
+                    weatherIcon.classList.add('fa-sun');
+                }
+            }
         }
+        // Use local time instead of game time
+        let d = new Date();
+        document.getElementById('time-hour').innerText = String(d.getHours()).padStart(2, '0');
+        document.getElementById('time-minute').innerText = String(d.getMinutes()).padStart(2, '0');
 
         // Update engine button state
         const engineBtn = document.getElementById('engine-btn');
