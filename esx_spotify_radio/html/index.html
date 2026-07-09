@@ -47,23 +47,37 @@
                 </div>
 
                 <div class="categories-grid">
-                    <div class="category-card" style="border-left-color: red;">
-                        <i class="fa-solid fa-chart-line"></i> Top Monthly
-                    </div>
-                    <div class="category-card" style="border-left-color: greenyellow;">
-                        <i class="fa-solid fa-chart-bar"></i> Top Weekly
+                    <div class="category-card">
+                        <div class="category-icon" style="background-color: #d11c1c;">
+                            <div class="bars"><span></span><span></span><span></span></div>
+                        </div>
+                        Top Monthly
                     </div>
                     <div class="category-card">
-                        <div class="mock-img"></div> Dantukas
+                        <div class="category-icon" style="background-color: #a8cf10;">
+                            <div class="bars"><span></span><span></span><span></span></div>
+                        </div>
+                        Top Weekly
                     </div>
                     <div class="category-card">
-                        <div class="mock-img"></div> Vibas
+                        <img src="https://images.unsplash.com/photo-1493225457124-a1a2a29ce114?auto=format&fit=crop&w=48&h=48&q=80" alt="Dantukas" class="category-img">
+                        Dantukas
                     </div>
-                    <div class="category-card" style="border-left-color: purple;">
-                        <i class="fa-solid fa-music"></i> Muzika
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=48&h=48&q=80" alt="Vibas" class="category-img">
+                        Vibas
                     </div>
-                    <div class="category-card" style="border-left-color: purple;">
-                        <i class="fa-solid fa-headphones"></i> Uptempo Best Tempo
+                    <div class="category-card">
+                        <div class="category-icon" style="background-color: #a31cd1;">
+                            <div class="bars"><span></span><span></span><span></span></div>
+                        </div>
+                        Muzika
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon" style="background-color: #a31cd1;">
+                            <div class="bars"><span></span><span></span><span></span></div>
+                        </div>
+                        Uptempo Best Tempo
                     </div>
                 </div>
 
@@ -72,14 +86,24 @@
                     <div class="recent-grid" id="recent-songs-container">
                         <!-- Recently played will go here -->
                         <div class="recent-card">
-                            <img src="https://via.placeholder.com/150" alt="mock">
+                            <img src="https://images.unsplash.com/photo-1605806616949-1e87b487bc2a?auto=format&fit=crop&w=150&h=150&q=80" alt="mock">
                             <h4>Aslan feat...</h4>
                             <p>Bass Boost...</p>
                         </div>
                          <div class="recent-card">
-                            <img src="https://via.placeholder.com/150" alt="mock">
+                            <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=150&h=150&q=80" alt="mock">
                             <h4>Vse Delfiny...</h4>
                             <p>kavenskas</p>
+                        </div>
+                        <div class="recent-card">
+                            <img src="https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?auto=format&fit=crop&w=150&h=150&q=80" alt="mock">
+                            <h4>Dj Kantik - ...</h4>
+                            <p>Dj Kantik</p>
+                        </div>
+                        <div class="recent-card">
+                            <img src="https://images.unsplash.com/photo-1619983081563-430f63602796?auto=format&fit=crop&w=150&h=150&q=80" alt="mock">
+                            <h4>du bist gut...</h4>
+                            <p>Mr.psychos</p>
                         </div>
                     </div>
                 </div>
@@ -94,7 +118,7 @@
                     <h4 id="now-playing-title">Nėra grojamos dainos</h4>
                     <p id="now-playing-artist">---</p>
                 </div>
-                <i class="fa-regular fa-circle-plus save-song-btn" id="save-current-song" title="Išsaugoti"></i>
+                <i class="fa-solid fa-circle-plus save-song-btn" id="save-current-song" title="Išsaugoti"></i>
             </div>
 
             <div class="player-controls-container">
@@ -117,8 +141,6 @@
                 <input type="range" id="volume-slider" min="0" max="100" value="100">
             </div>
         </div>
-        <!-- Close Button overlay -->
-        <button id="close-ui-btn"><i class="fa-solid fa-xmark"></i> Esc</button>
     </div>
 
     <script src="js/script.js"></script>

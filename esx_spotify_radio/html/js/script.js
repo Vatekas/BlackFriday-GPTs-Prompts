@@ -17,15 +17,6 @@ window.addEventListener('message', function(event) {
     }
 });
 
-// Close UI
-document.getElementById('close-ui-btn').addEventListener('click', function() {
-    fetch(`https://${GetParentResourceName()}/close`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-        body: JSON.stringify({})
-    });
-});
-
 // Close on Escape key
 document.addEventListener('keyup', function(e) {
     if (e.key === 'Escape') {

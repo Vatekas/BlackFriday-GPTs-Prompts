@@ -226,29 +226,49 @@ body {
     border-radius: 6px;
     display: flex;
     align-items: center;
-    padding: 0 15px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
-    border-left: 5px solid transparent;
+    overflow: hidden;
 }
 
 .category-card:hover {
     background-color: rgba(255,255,255,0.2);
 }
 
-.category-card i {
-    font-size: 1.5rem;
+.category-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-right: 15px;
 }
 
-.category-card .mock-img {
-    width: 40px;
-    height: 40px;
-    background-color: #ccc;
-    border-radius: 4px;
+.category-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
     margin-right: 15px;
 }
+
+.bars {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    height: 24px;
+}
+
+.bars span {
+    background-color: white;
+    width: 5px;
+    border-radius: 2px;
+}
+
+.bars span:nth-child(1) { height: 12px; }
+.bars span:nth-child(2) { height: 24px; }
+.bars span:nth-child(3) { height: 16px; }
+
 
 .recent-section h2 {
     font-size: 1.2rem;
@@ -397,17 +417,4 @@ body {
 .player-volume input[type="range"] {
     width: 100px;
     accent-color: #1db954;
-}
-
-#close-ui-btn {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    background: rgba(0,0,0,0.8);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
 }
