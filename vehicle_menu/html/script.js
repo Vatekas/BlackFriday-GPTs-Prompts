@@ -44,19 +44,26 @@ window.addEventListener('message', function(event) {
                 }
             }
         }
-        // Use local time instead of game time
-        let d = new Date();
-        document.getElementById('time-hour').innerText = String(d.getHours()).padStart(2, '0');
-        document.getElementById('time-minute').innerText = String(d.getMinutes()).padStart(2, '0');
+        // Use game time
+        if (data.time) {
+            document.getElementById('time-hour').innerText = String(data.time.hour).padStart(2, '0');
+            document.getElementById('time-minute').innerText = String(data.time.minute).padStart(2, '0');
+        } else {
+            let d = new Date();
+            document.getElementById('time-hour').innerText = String(d.getHours()).padStart(2, '0');
+            document.getElementById('time-minute').innerText = String(d.getMinutes()).padStart(2, '0');
+        }
 
         // Update engine button state
         const engineBtn = document.getElementById('engine-btn');
         if (data.engineRunning) {
             engineBtn.style.color = '#b3ff00';
-            engineBtn.querySelector('svg').style.color = '#b3ff00';
+            const icon = engineBtn.querySelector('i') || engineBtn.querySelector('svg');
+            if (icon) icon.style.color = '#b3ff00';
         } else {
             engineBtn.style.color = '#fff';
-            engineBtn.querySelector('svg').style.color = '#fff';
+            const icon = engineBtn.querySelector('i') || engineBtn.querySelector('svg');
+            if (icon) icon.style.color = '#fff';
         }
 
         // Update main lock button state
@@ -64,16 +71,21 @@ window.addEventListener('message', function(event) {
         if (lockBtn) {
             // lockStatus: 1 = unlocked, 2 = locked (usually)
             const isLocked = data.lockStatus === 2 || data.lockStatus === 3 || data.lockStatus === 4;
+            const icon = lockBtn.querySelector('i') || lockBtn.querySelector('svg');
             if (isLocked) {
                 lockBtn.style.color = '#ff3333';
-                lockBtn.querySelector('svg').style.color = '#ff3333';
-                lockBtn.querySelector('svg').classList.remove('fa-lock-open');
-                lockBtn.querySelector('svg').classList.add('fa-lock');
+                if (icon) {
+                    icon.style.color = '#ff3333';
+                    icon.classList.remove('fa-lock-open');
+                    icon.classList.add('fa-lock');
+                }
             } else {
                 lockBtn.style.color = '#b3ff00';
-                lockBtn.querySelector('svg').style.color = '#b3ff00';
-                lockBtn.querySelector('svg').classList.remove('fa-lock');
-                lockBtn.querySelector('svg').classList.add('fa-lock-open');
+                if (icon) {
+                    icon.style.color = '#b3ff00';
+                    icon.classList.remove('fa-lock');
+                    icon.classList.add('fa-lock-open');
+                }
             }
 
             // Sync car icons as well

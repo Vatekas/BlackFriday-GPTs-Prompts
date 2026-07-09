@@ -161,12 +161,12 @@ body {
 }
 
 /* Positions based on the image roughly */
-.lock-icon.fl { top: 50px; left: 240px; }
-.lock-icon.fr { top: 50px; left: 400px; }
-.lock-icon.rl { bottom: 50px; left: 240px; }
-.lock-icon.rr { bottom: 50px; left: 400px; }
-.lock-icon.hood { top: 105px; left: 160px; }
-.lock-icon.trunk { top: 105px; right: 110px; }
+.lock-icon.fl { top: 55px; left: 220px; }
+.lock-icon.fr { top: 55px; left: 400px; }
+.lock-icon.rl { bottom: 55px; left: 220px; }
+.lock-icon.rr { bottom: 55px; left: 400px; }
+.lock-icon.hood { top: 105px; left: 50px; }
+.lock-icon.trunk { top: 105px; right: 70px; }
 
 /* Fuel bar */
 .fuel-bar-container {
@@ -180,10 +180,10 @@ body {
 }
 
 .fuel-bar {
-    width: 10px;
+    width: 15px;
     flex-grow: 1;
     background-color: #333;
-    border-radius: 5px;
+    border-radius: 8px;
     position: relative;
     overflow: hidden;
     margin-bottom: 10px;
@@ -194,7 +194,28 @@ body {
     bottom: 0;
     width: 100%;
     background-color: #b3ff00;
-    border-radius: 5px;
+    border-radius: 8px;
+    transition: height 0.5s ease;
+    overflow: hidden;
+}
+
+/* Wavy fuel animation */
+.fuel-fill::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -15px;
+    width: 45px;
+    height: 45px;
+    background-color: #333;
+    border-radius: 40%;
+    animation: wave 3s infinite linear;
+    opacity: 0.8;
+}
+
+@keyframes wave {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .fuel-icon {
@@ -277,6 +298,7 @@ body {
 .info-text .value {
     font-size: 24px;
     font-weight: 700;
+    transition: all 0.3s ease;
 }
 
 .temp-card {

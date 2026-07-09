@@ -52,7 +52,7 @@ RegisterKeyMapping('openvehiclemenu', 'Open Vehicle Menu', 'keyboard', 'G')
 function StartUpdateLoop()
     Citizen.CreateThread(function()
         while updateLoopActive do
-            Citizen.Wait(1000) -- Update every second
+            Citizen.Wait(200) -- Update 5 times a second for smoother dynamic updates
 
             if menuOpen then
                 local ped = PlayerPedId()
