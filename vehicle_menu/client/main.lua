@@ -146,6 +146,7 @@ RegisterNUICallback('closeMenu', function(data, cb)
 end)
 
 RegisterNUICallback('toggleEngine', function(data, cb)
+    cb('ok')
     local ped = PlayerPedId()
     local vehicle = GetVehiclePedIsIn(ped, false)
     if vehicle and vehicle ~= 0 then
@@ -159,23 +160,25 @@ RegisterNUICallback('toggleEngine', function(data, cb)
 
             -- Use ox_lib progress bar if available
             if lib and lib.progressBar then
-                local success = lib.progressBar({
-                    duration = 2000,
-                    label = label,
-                    useWhileDead = false,
-                    canCancel = true,
-                    disable = {
-                        car = true,
-                    }
-                })
+                Citizen.CreateThread(function()
+                    local success = lib.progressBar({
+                        duration = 2000,
+                        label = label,
+                        useWhileDead = false,
+                        canCancel = true,
+                        disable = {
+                            car = true,
+                        }
+                    })
 
-                if success then
-                    -- Verify player is still in the vehicle after progress
-                    local newVehicle = GetVehiclePedIsIn(ped, false)
-                    if newVehicle == vehicle then
-                         SetVehicleEngineOn(vehicle, true, false, true)
+                    if success then
+                        -- Verify player is still in the vehicle after progress
+                        local newVehicle = GetVehiclePedIsIn(ped, false)
+                        if newVehicle == vehicle then
+                             SetVehicleEngineOn(vehicle, true, false, true)
+                        end
                     end
-                end
+                end)
             else
                 -- Fallback if ox_lib isn't correctly loaded somehow
                 SetVehicleEngineOn(vehicle, true, false, true)
@@ -185,7 +188,6 @@ RegisterNUICallback('toggleEngine', function(data, cb)
             SetVehicleEngineOn(vehicle, false, false, true)
         end
     end
-    cb('ok')
 end)
 
 RegisterNUICallback('changeSeat', function(data, cb)

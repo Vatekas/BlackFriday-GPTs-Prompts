@@ -125,10 +125,7 @@ body {
     align-items: center;
 }
 
-.car-image {
-    width: 450px;
-    height: 220px;
-}
+.car-image { width: 450px; height: 220px; position: relative; }
 
 .lock-icon {
     position: absolute;
@@ -161,12 +158,12 @@ body {
 }
 
 /* Positions based on the image roughly */
-.lock-icon.fl { top: 55px; left: 220px; }
-.lock-icon.fr { top: 55px; left: 400px; }
-.lock-icon.rl { bottom: 55px; left: 220px; }
-.lock-icon.rr { bottom: 55px; left: 400px; }
-.lock-icon.hood { top: 105px; left: 50px; }
-.lock-icon.trunk { top: 105px; right: 70px; }
+.lock-icon.fl { bottom: -18%; left: 33%; }
+.lock-icon.fr { top: -18%; left: 33%; }
+.lock-icon.rl { bottom: -18%; right: 28%; }
+.lock-icon.rr { top: -18%; right: 28%; }
+.lock-icon.hood { top: 50%; left: -14%; transform: translateY(-50%); }
+.lock-icon.trunk { top: 50%; right: -15%; transform: translateY(-50%); }
 
 /* Fuel bar */
 .fuel-bar-container {
