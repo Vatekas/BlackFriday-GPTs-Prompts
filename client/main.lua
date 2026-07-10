@@ -413,8 +413,15 @@ function SetupSquareRadar()
         minimapOffset = ((defaultAspectRatio-aspectRatio)/3.6)-0.008
     end
 
+    RequestStreamedTextureDict("minimap", false)
+    if not HasStreamedTextureDictLoaded("minimap") then
+        Wait(150)
+    end
+
     -- Ensure standard rectangle clipping for our custom minimap.ytd mask
     SetMinimapClipType(0)
+    AddReplaceTexture("platform:/textures/graphics", "radarmasksm", "minimap", "radarmasksm")
+    AddReplaceTexture("platform:/textures/graphics", "radarmask1g", "minimap", "radarmasksm")
 
     -- Reshape the standard GTA V rectangular radar into a square
     SetMinimapComponentPosition("minimap", "L", "B", 0.0 + minimapOffset, -0.047, 0.1638, 0.183)
