@@ -485,7 +485,7 @@ html, body {
     pointer-events: none;
 
     /* Pataisyta pagal atnaujintas x ašies minimapo koordinates bei naudotojo prašymus (plotis buvo 12.8vw praeitame iteravime, o x 0) */
-    left: 0vw;
+    left: 1.5vw;
     bottom: 21vh; /* Pakelta nuo 20vh / 20.5vh siekiant idealiai atskirti nuo paties radar teksto/borderio */
     width: 12.8vw;
     box-sizing: border-box;
