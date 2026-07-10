@@ -1,0 +1,542 @@
+/* Ensure transparent background for the FiveM NUI browser window */
+html, body {
+    background: transparent !important;
+    background-color: transparent !important;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    color: #ffffff;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Container aligned to Top Right of screen */
+#hud-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    width: auto;
+    max-width: 380px;
+    z-index: 1000;
+}
+
+/* Basic Pill/Card Styling (Translucent dark background, no borders, compact size) */
+.glass-card {
+    background: rgba(0, 0, 0, 0.45);
+    border: none;
+    border-radius: 19px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    height: 38px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Row wrapper */
+.hud-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+/* Spaced row (e.g. side-by-side elements) */
+.split-row {
+    display: flex;
+    gap: 8px;
+    width: auto;
+}
+
+/* Pill specific widths */
+.shrink {
+    width: fit-content;
+    min-width: 60px;
+}
+
+.expand-time {
+    width: fit-content;
+    min-width: 100px;
+}
+
+/* Voice Container Card (Sleek, matching other pills height, no avatar) */
+.voice-container {
+    border-radius: 19px;
+    padding: 8px 14px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.45);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Equalizer waves when talking (positioned left of card) */
+.sound-waves {
+    display: none; /* Hidden by default */
+    align-items: center;
+    gap: 3px;
+    height: 20px;
+    margin-right: 12px;
+}
+
+.sound-waves.talking {
+    display: flex;
+}
+
+.wave-bar {
+    width: 3px;
+    height: 4px;
+    background-color: #4ade80; /* bright green waves */
+    border-radius: 1.5px;
+    animation: quiet 0.3s ease-in-out infinite alternate;
+}
+
+.wave-bar:nth-child(2) {
+    animation-name: loud;
+    animation-delay: 0.1s;
+}
+
+.wave-bar:nth-child(3) {
+    animation-name: loud;
+    animation-delay: 0.2s;
+}
+
+.wave-bar:nth-child(4) {
+    animation-name: quiet;
+    animation-delay: 0.15s;
+}
+
+@keyframes quiet {
+    0% { height: 4px; }
+    100% { height: 12px; }
+}
+
+@keyframes loud {
+    0% { height: 6px; }
+    100% { height: 22px; }
+}
+
+/* Voice Range Indicator Capsule */
+.voice-level {
+    width: 4px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.voice-level-fill {
+    width: 100%;
+    height: 33%;
+    background-color: #ffffff;
+    position: absolute;
+    bottom: 0;
+    border-radius: 2px;
+    transition: height 0.15s ease, background-color 0.15s ease;
+}
+
+/* Microphone Box & SVG */
+.voice-mic-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+}
+
+.mic-icon {
+    width: 15px;
+    height: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Toggle microphone slash visibility */
+.mic-icon.talking {
+    color: #4ade80; /* green when talking */
+}
+
+.mic-icon.talking .mic-slash {
+    display: none;
+}
+
+.mic-icon.muted .mic-slash {
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.mic-icon.muted {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Pills Formatting (Centered text and icons using flexbox, standardized dimensions) */
+.hud-pill {
+    font-size: 14px;
+    font-weight: 700;
+    gap: 8px;
+    padding: 0 16px;
+    border-radius: 18px;
+    border: none;
+    height: 36px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hud-pill span {
+    font-family: 'Outfit', sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.2px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Inline SVGs styles */
+.icon-svg-no-bg {
+    width: 14px;
+    height: 14px;
+    color: rgba(255, 255, 255, 0.75);
+    flex-shrink: 0;
+}
+
+.icon-svg {
+    width: 12px;
+    height: 12px;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+/* Solid background circles for icons */
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-left: -6px; /* pulls icon slightly left for nice padding */
+}
+
+/* Icon backgrounds matching reference HUD colors */
+.icon-green {
+    background-color: #2e7d32; /* solid dark green */
+}
+
+.icon-blue {
+    background-color: #1b62a5; /* solid dark blue */
+}
+
+.icon-red {
+    background-color: #c62828; /* solid dark red */
+}
+
+.icon-grey-bg {
+    background-color: rgba(255, 255, 255, 0.18); /* translucent grey */
+}
+
+/* Job Pill (aligned to right, scales automatically) */
+.job-pill {
+    width: auto;
+    min-width: 110px;
+    max-width: 100%;
+    justify-content: flex-start;
+    padding: 0 12px 0 10px;
+}
+
+/* Money Pills stacked vertically with identical width and left-aligned icons */
+.money-pill {
+    width: 140px; /* Identical width for cash/bank/dirty money */
+    justify-content: flex-start; /* Align icon left, text right */
+    padding: 0 12px;
+    background: rgba(0, 0, 0, 0.45); /* translucent black */
+}
+
+.cash-pill {
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.1), 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.bank-pill {
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.1), 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dirty-pill {
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.1), 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Dirty money row animations */
+#dirty-money-row {
+    transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease;
+    max-height: 40px;
+    opacity: 1;
+}
+
+#dirty-money-row.hidden {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-8px);
+    overflow: hidden;
+    pointer-events: none;
+    margin-top: -8px;
+}
+
+/* SPEEDOMETER STYLING (Bottom-right corner, Cleaned Layout) */
+#speedometer {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    width: 195px;
+    height: 195px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 50%;
+    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.45);
+    transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: none;
+}
+
+#speedometer.speedo-hidden {
+    opacity: 0;
+    transform: scale(0.85) translateY(15px);
+}
+
+/* Floating Fuel & Engine Icons (Nested inside main SVG for perfect scaling & alignment) */
+.speedo-svg-icon {
+    color: rgba(255, 255, 255, 0.85); /* Solid bright white/grey */
+    transition: color 0.3s ease, filter 0.3s ease;
+}
+
+/* Warning states for low fuel / engine damage (blinking red/orange) */
+.speedo-svg-icon.warning {
+    color: #ff4d4d !important;
+    filter: drop-shadow(0 0 5px rgba(255, 77, 77, 0.95));
+    animation: speedo-blink 1s infinite alternate;
+}
+
+@keyframes speedo-blink {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.speedo-ring {
+    width: 100%;
+    height: 100%;
+}
+
+/* Main Inner RPM Track (Center) */
+.speedo-track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.15);
+    stroke-width: 5.5;
+    stroke-linecap: round;
+    stroke-dasharray: 188 251; /* 270 degrees arc length for r=40 */
+    transform: rotate(135deg);
+    transform-origin: 50px 50px;
+}
+
+.speedo-fill {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: 0 251; /* Controlled dynamically by JS (0 to 188) */
+    transform: rotate(135deg);
+    transform-origin: 50px 50px;
+    transition: stroke-dasharray 0.08s linear;
+}
+
+/* Outer Concentric Arcs (Fuel & Engine) */
+.speedo-outer-track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.12);
+    stroke-width: 3.5;
+    stroke-linecap: round;
+}
+
+.speedo-outer-fill {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 4;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.3s ease;
+}
+
+/* Left Arc: Fuel Level */
+.fuel-track, .fuel-fill {
+    stroke-dasharray: 88 289; /* 110 degrees for r=46 */
+    transform: rotate(125deg); /* Spans bottom-left to top-left */
+    transform-origin: 50px 50px;
+}
+
+/* Right Arc: Engine Health */
+.engine-track, .engine-fill {
+    stroke-dasharray: 88 289; /* 110 degrees for r=46 */
+    transform: rotate(-55deg); /* Spans bottom-right to top-right */
+    transform-origin: 50px 50px;
+}
+
+/* Color overrides for active outer arcs */
+.fuel-fill {
+    stroke: #4ade80; /* green active fuel fill */
+}
+
+.engine-fill {
+    stroke: #63b3ed; /* light blue engine fill */
+}
+
+/* Engine fill turns orange/red when damaged */
+.engine-fill.warning {
+    stroke: #f6ad55; /* orange warning fill */
+}
+
+.engine-fill.danger {
+    stroke: #fc8181; /* red danger fill */
+}
+
+.speedo-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 15px 0;
+}
+
+/* Gear indicator circle pushed down to create a clean gap from the RPM ring track */
+.speedo-gear-circle {
+    width: 34px;
+    height: 34px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 26px; /* Gap between it and the top RPM path is preserved */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* Speed value in the center */
+.speedo-speed {
+    font-size: 60px;
+    font-weight: 800;
+    line-height: 1;
+    color: #ffffff;
+    margin-top: 0px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* KMH label under speed */
+.speedo-unit {
+    font-size: 14px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: -6px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+/* Digital Odometer at the bottom */
+.speedo-odometer {
+    font-size: 11px;
+    font-family: 'Inter', monospace;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 4px 12px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.6);
+}
+
+/* LOCATION HUD STYLING (Fixed at bottom-left above custom minimaps) */
+#location-hud {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 12px;
+    padding: 10px 14px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 999;
+    pointer-events: none;
+
+    /* Positioned perfectly above our SetupSquareRadar mask (2vw left, 11.1vw width) */
+    left: 2vw;
+    bottom: 20vh; /* Sits directly above the minimap (3.2vh bottom + 15.9vh height + 0.9vh gap) */
+    width: 11.1vw;
+    box-sizing: border-box;
+}
+
+#location-hud.location-hidden {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.location-badge {
+    background: #ffffff;
+    color: #000000;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.location-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.location-street {
+    font-size: 14px; /* Slightly smaller to prevent wrap */
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.location-details {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.2;
+    margin-top: 1px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
