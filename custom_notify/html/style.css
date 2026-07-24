@@ -14,30 +14,31 @@ body {
 
 #notification-container {
     position: absolute;
-    bottom: 250px; /* Position above minimap */
-    left: -400px; /* Start outside the screen on the left for animation */
+    top: 50%; /* Vertically middle */
+    transform: translateY(-50%);
+    right: -400px; /* Start outside the screen on the right for animation */
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    transition: left 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    gap: 10px;
+    transition: right 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .notification {
     background-color: #111111;
     color: #ffffff;
-    width: 260px; /* Smaller width */
-    min-height: 45px; /* Smaller height */
-    border-radius: 4px;
+    width: 320px; /* Original larger width */
+    min-height: 60px; /* Original larger height */
+    border-radius: 6px;
     display: flex;
     align-items: center;
-    padding: 0 12px;
+    padding: 0 15px;
     position: relative;
     overflow: hidden;
     /* Box-shadow can cause artifacts in FiveM CEF, keeping it subtle or removing it is recommended. We'll use a very subtle one. */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 
     /* Animation states */
-    transform: translateX(-100%); /* Start further left for animation in */
+    transform: translateX(100%); /* Start further right for animation in */
     opacity: 0;
     transition: all 0.4s ease-out;
 }
@@ -52,15 +53,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px; /* Smaller icon container */
-    height: 24px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 12px;
     z-index: 2;
 }
 
 .icon-container i {
-    font-size: 14px; /* Smaller icon */
+    font-size: 18px;
 }
 
 /* Success Type Styling */
@@ -70,7 +71,7 @@ body {
 
 /* Text Content */
 .message-content {
-    font-size: 13px; /* Smaller font */
+    font-size: 15px;
     font-weight: 600;
     letter-spacing: 0.2px;
     z-index: 2;
@@ -121,23 +122,6 @@ body {
     z-index: 2;
 }
 
-/* Subtle pattern for report right top */
-.report-pattern {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 60px;
-    height: 60px;
-    background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 5px,
-        rgba(255, 255, 255, 0.03) 5px,
-        rgba(255, 255, 255, 0.03) 10px
-    );
-    z-index: 1;
-    pointer-events: none;
-}
 
 /* ---------------------------------
    Progress Type Styling

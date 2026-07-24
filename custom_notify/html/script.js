@@ -9,7 +9,7 @@ function showNotification(message, type, title, duration) {
     const displayDuration = duration || 3500;
 
     // Make container visible if it was hidden
-    container.style.left = '20px';
+    container.style.right = '20px';
 
     const notification = document.createElement('div');
     notification.classList.add('notification', type);
@@ -23,7 +23,6 @@ function showNotification(message, type, title, duration) {
                 <div class="report-title">${title || 'Pagalba'}</div>
             </div>
             <div class="report-message">${message}</div>
-            <div class="report-pattern"></div>
         `;
     } else if (type === 'progress') {
         notification.innerHTML = `
@@ -90,7 +89,7 @@ function showNotification(message, type, title, duration) {
 
             // Hide container if no notifications left
             if (container.children.length === 0) {
-                 container.style.left = '-400px';
+                 container.style.right = '-400px';
             }
         }, 400);
     }, displayDuration);
