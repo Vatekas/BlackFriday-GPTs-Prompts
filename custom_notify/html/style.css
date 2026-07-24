@@ -51,11 +51,14 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: 60px;
+    width: 100px;
     height: 100%;
     background-image: url('pattern.svg');
-    background-repeat: no-repeat;
-    background-position: right center;
+    background-repeat: repeat;
+    background-size: 16px 16px;
+    /* Fades the pattern out smoothly towards the left so it doesn't look like a hard cut */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 100%);
     pointer-events: none;
     z-index: 1;
 }
