@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LunaX Serveris Loading Screen</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main Background -->
+    <div class="background-container">
+        <!-- Placeholder for GTAV background, handled in CSS -->
+    </div>
+
+    <!-- Sidebar Icons -->
+    <nav class="sidebar">
+        <a href="https://discord.gg/An5XycuzFA" target="_blank" class="sidebar-icon">
+            <i class="fa-brands fa-discord"></i>
+        </a>
+        <a href="http://localhost:9000/" target="_blank" class="sidebar-icon">
+            <i class="fa-solid fa-globe"></i>
+        </a>
+        <div class="sidebar-icon" id="toggle-about" style="cursor: pointer;">
+            <i class="fa-solid fa-flag"></i>
+        </div>
+    </nav>
+
+    <!-- Slide-out About Us Panel -->
+    <div class="about-panel" id="about-panel">
+        <h2>LunaX Serveris Apie Mus</h2>
+        <div class="about-content">
+            <p>Sveiki atvykę į LunaX Serverį! Mes esame inovatyvus ir nuolat tobulėjantis serveris, kuriame kiekvienas žaidėjas ras savo vietą. Mūsų administracija užtikrina sklandų žaidimą, pagalbą ir sąžiningumą.</p>
+            <p>Prisijunkite prie mūsų bendruomenės Discord platformoje, kad sužinotumėte naujausias naujienas, gautumėte atsakymus į klausimus ir dalyvautumėte renginiuose.</p>
+            <p>Linkime gero laiko ir sėkmingo Roleplay žaidimo!</p>
+        </div>
+    </div>
+
+    <!-- Audio Controls (Top Right) -->
+    <div class="audio-controls">
+        <i class="fa-solid fa-backward-step ctrl-icon" id="audio-prev"></i>
+        <i class="fa-solid fa-play ctrl-icon" id="audio-playpause"></i>
+        <i class="fa-solid fa-forward-step ctrl-icon" id="audio-next"></i>
+        <div class="volume-container">
+            <i class="fa-solid fa-volume-high"></i>
+            <input type="range" id="volume-slider" min="0" max="100" value="50">
+        </div>
+    </div>
+
+    <!-- Bottom Section: Did you know? and Loading Bar -->
+    <div class="bottom-container">
+
+        <!-- Rotating Facts Section -->
+        <div class="facts-section">
+            <div class="facts-title">Ar žinojai kad?</div>
+            <div class="facts-wrapper">
+                <!-- Fact 1 -->
+                <div class="fact-item active" id="fact-1">
+                    <i class="fa-solid fa-gift"></i>
+                    <span>Atejęs į LunaX serverį būdamas naujoku panaudok <strong>/promo Vatekas</strong> kodą ir gausi 2x starter pack dvigubai daugiau!</span>
+                </div>
+                <!-- Fact 2 -->
+                <div class="fact-item" id="fact-2">
+                    <i class="fa-solid fa-bug bug-icon"></i>
+                    <span>Atejęs į serverį, jei kyla bug problema, panaudok <strong>/report</strong> komandą (yra skiltis bug / pažeidimas).</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Bar Section -->
+        <div class="loading-section">
+            <div class="loading-text">KRAUNAMA LUNAX SERVERIS</div>
+            <div class="loading-bar-container">
+                <div class="loading-bar-fill"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
