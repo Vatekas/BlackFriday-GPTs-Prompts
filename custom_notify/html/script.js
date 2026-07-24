@@ -35,10 +35,12 @@ function showNotification(message, type, title, duration) {
             </div>
         `;
     } else {
-        // Standard success type
+        // Standard success / info type
+        let iconClass = type === 'info' ? 'fa-solid fa-circle-info' : 'fa-regular fa-circle-check';
+
         notification.innerHTML = `
             <div class="icon-container">
-                <i class="fa-regular fa-circle-check"></i>
+                <i class="${iconClass}"></i>
             </div>
             <div class="message-content">${message}</div>
         `;

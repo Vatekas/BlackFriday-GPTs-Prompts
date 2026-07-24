@@ -23,5 +23,8 @@ RegisterCommand('testnotify', function(source, args, rawCommand)
 
         Citizen.Wait(500)
         TriggerEvent('custom_notify:showNotify', 'Naudojama Bintas', 'progress', nil, 5000)
+
+        Citizen.Wait(500)
+        TriggerEvent('custom_notify:showNotify', 'Jūs gavote atlyginimą: $10', 'info', nil, 4000)
     end)
 end, false)

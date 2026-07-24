@@ -26,12 +26,14 @@ body {
 .notification {
     background-color: #111111;
     color: #ffffff;
-    width: 320px; /* Original larger width */
+    width: fit-content;
+    min-width: 260px;
+    max-width: 450px;
     min-height: 60px; /* Original larger height */
     border-radius: 6px;
     display: flex;
     align-items: center;
-    padding: 0 15px;
+    padding: 0 20px 0 15px; /* Extra padding on right */
     position: relative;
     overflow: hidden;
     /* Box-shadow can cause artifacts in FiveM CEF, keeping it subtle or removing it is recommended. We'll use a very subtle one. */
@@ -67,6 +69,11 @@ body {
 /* Success Type Styling */
 .notification.success .icon-container {
     color: #61D153; /* Light green from the image */
+}
+
+/* Info Type Styling */
+.notification.info .icon-container {
+    color: #60a5fa; /* Blue info icon */
 }
 
 /* Text Content */
