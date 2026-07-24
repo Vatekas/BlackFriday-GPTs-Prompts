@@ -8,7 +8,7 @@ function showNotification(message, type) {
     const container = document.getElementById('notification-container');
 
     // Make container visible if it was hidden
-    container.style.right = '20px';
+    container.style.left = '20px';
 
     const notification = document.createElement('div');
     notification.classList.add('notification', type);
@@ -48,7 +48,7 @@ function showNotification(message, type) {
 
             // Hide container if no notifications left
             if (container.children.length === 0) {
-                 container.style.right = '-400px';
+                 container.style.left = '-400px';
             }
         }, 400);
     }, 3500);

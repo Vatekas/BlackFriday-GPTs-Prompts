@@ -14,48 +14,32 @@ body {
 
 #notification-container {
     position: absolute;
-    top: 50px; /* Adjust top spacing */
-    right: -400px; /* Start outside the screen for animation */
+    bottom: 250px; /* Position above minimap */
+    left: -400px; /* Start outside the screen on the left for animation */
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    transition: right 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    gap: 8px;
+    transition: left 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .notification {
     background-color: #111111;
     color: #ffffff;
-    width: 320px;
-    min-height: 60px;
-    border-radius: 6px;
+    width: 260px; /* Smaller width */
+    min-height: 45px; /* Smaller height */
+    border-radius: 4px;
     display: flex;
     align-items: center;
-    padding: 0 15px;
+    padding: 0 12px;
     position: relative;
     overflow: hidden;
     /* Box-shadow can cause artifacts in FiveM CEF, keeping it subtle or removing it is recommended. We'll use a very subtle one. */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 
     /* Animation states */
-    transform: translateX(100%);
+    transform: translateX(-100%); /* Start further left for animation in */
     opacity: 0;
     transition: all 0.4s ease-out;
-}
-
-.notification::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    background-image: url('pattern.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right center;
-    opacity: 0.15;
-    pointer-events: none;
 }
 
 .notification.show {
@@ -68,15 +52,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: 24px; /* Smaller icon container */
+    height: 24px;
     border-radius: 50%;
-    margin-right: 12px;
+    margin-right: 10px;
     z-index: 2;
 }
 
 .icon-container i {
-    font-size: 18px;
+    font-size: 14px; /* Smaller icon */
 }
 
 /* Success Type Styling */
@@ -86,7 +70,7 @@ body {
 
 /* Text Content */
 .message-content {
-    font-size: 15px;
+    font-size: 13px; /* Smaller font */
     font-weight: 600;
     letter-spacing: 0.2px;
     z-index: 2;
