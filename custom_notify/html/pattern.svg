@@ -1,0 +1,16 @@
+<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+    <!-- Subtle geometric/diagonal pattern matching the reference image -->
+    <g fill="none" stroke="#ffffff" stroke-width="3" opacity="0.05">
+        <path d="M 40 -10 L 70 20" />
+        <path d="M 30 -10 L 70 30" />
+        <path d="M 20 -10 L 70 40" />
+        <path d="M 10 -10 L 70 50" />
+
+        <!-- Cross-hatch/diagonal elements -->
+        <path d="M 50 10 L 20 40" />
+        <path d="M 60 20 L 30 50" />
+
+        <!-- Small triangle accent -->
+        <polygon points="50,40 60,30 60,50" fill="#ffffff" stroke="none" />
+    </g>
+</svg>

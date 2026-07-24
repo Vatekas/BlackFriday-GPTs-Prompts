@@ -45,6 +45,21 @@ body {
     transition: all 0.4s ease-out;
 }
 
+/* Background pattern applied to all notifications on the right side */
+.notification::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 100%;
+    background-image: url('pattern.svg');
+    background-repeat: no-repeat;
+    background-position: right center;
+    pointer-events: none;
+    z-index: 1;
+}
+
 .notification.show {
     transform: translateX(0);
     opacity: 1;
