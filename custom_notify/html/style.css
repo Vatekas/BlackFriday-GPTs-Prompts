@@ -42,6 +42,22 @@ body {
     transition: all 0.4s ease-out;
 }
 
+.notification::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background-image: url('pattern.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right center;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
 .notification.show {
     transform: translateX(0);
     opacity: 1;
