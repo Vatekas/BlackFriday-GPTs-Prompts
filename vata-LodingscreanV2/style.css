@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #1a1a1a; /* Fallback */
+    /* Background image will be set here or via JS if you want */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+/* MUSIC PLAYER */
+.music-player {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(20, 20, 20, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.controls button:hover {
+    color: #3498db;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.volume-control input[type="range"] {
+    width: 100px;
+}
+
+/* SERVER INFO */
+.server-info-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#flagBtn {
+    background: rgba(20, 20, 20, 0.8);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#flagBtn:hover {
+    background: #3498db;
+}
+
+#serverDescription {
+    margin-top: 10px;
+    background: rgba(20, 20, 20, 0.9);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: left;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#serverDescription.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+}
+
+#serverDescription h3 {
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+/* DID YOU KNOW */
+.did-you-know {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+    color: white;
+    background: rgba(20, 20, 20, 0.7);
+    padding: 30px;
+    border-radius: 12px;
+    min-width: 400px;
+    max-width: 600px;
+}
+
+.did-you-know h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.did-you-know p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    transition: opacity 0.5s ease;
+}
+
+/* LOADING BAR */
+.loading-container {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.loading-bar-wrapper {
+    flex-grow: 1;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.loading-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #3498db; /* Blue color, NO box-shadow as requested */
+    border-radius: 15px;
+    transition: width 0.2s ease;
+}
+
+.loading-percentage {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    min-width: 60px;
+    text-align: right;
+}

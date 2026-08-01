@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vata-LodingscreanV2</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <!-- Music Player (Top Left) -->
+    <div class="music-player">
+        <div class="controls">
+            <button id="prevBtn"><i class="fas fa-backward"></i></button>
+            <button id="playPauseBtn"><i class="fas fa-play"></i></button>
+            <button id="nextBtn"><i class="fas fa-forward"></i></button>
+        </div>
+        <div class="volume-control">
+            <i class="fas fa-volume-up"></i>
+            <input type="range" id="volumeSlider" min="0" max="100" value="50">
+        </div>
+    </div>
+
+    <!-- Server Info (Top Right) -->
+    <div class="server-info-container">
+        <button id="flagBtn"><i class="fas fa-flag"></i></button>
+        <div id="serverDescription" class="hidden">
+            <h3>LunaX Serveris</h3>
+            <p>Sveiki atvykę į LunaX! Čia jūsų laukia nepamirštami nuotykiai.</p>
+            <p>Prisijunkite prie mūsų bendruomenės: <br><a href="https://discord.gg/An5XycuzFA" target="_blank" style="color:#7289da; text-decoration:none;">Discord: An5XycuzFA</a></p>
+        </div>
+    </div>
+
+    <!-- Did You Know? (Center) -->
+    <div class="did-you-know">
+        <i class="fas fa-exclamation-circle fa-3x" style="color: #3498db; margin-bottom: 15px;"></i>
+        <h2>Ar tu žinojai?</h2>
+        <p id="factText">Šis serveris startavo neseniai!</p>
+    </div>
+
+    <!-- Loading Bar (Bottom) -->
+    <div class="loading-container">
+        <div class="loading-bar-wrapper">
+            <div id="loadingBar" class="loading-bar"></div>
+        </div>
+        <div id="loadingPercentage" class="loading-percentage">0%</div>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
