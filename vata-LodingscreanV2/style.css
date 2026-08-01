@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body, html {
@@ -124,31 +124,51 @@ body, html {
 /* DID YOU KNOW */
 .did-you-know {
     position: absolute;
-    top: 50%;
+    bottom: 80px; /* Moved down just above the loading bar */
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     z-index: 10;
     text-align: center;
     color: white;
     background: transparent;
     padding: 20px;
-    min-width: 300px;
-    max-width: 500px;
+    min-width: 400px;
+    max-width: 600px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-.did-you-know h2 {
-    font-size: 1.5rem;
+.info-icon-container {
+    width: 35px;
+    height: 35px;
+    background-color: #3498db;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 10px;
+    box-shadow: 0px 0px 10px rgba(52, 152, 219, 0.3);
+}
+
+.info-icon-container i {
+    color: #1a1a1a;
+    font-size: 1.2rem;
+    font-weight: 800; /* Extra bold 'i' */
+}
+
+.did-you-know h2 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     color: #3498db;
+    font-weight: 800; /* Extra bold header */
 }
 
 .did-you-know p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.4;
     transition: opacity 0.5s ease;
+    font-weight: 400;
 }
 
 /* LOADING BAR */
@@ -182,9 +202,9 @@ body, html {
 
 .loading-percentage {
     color: white;
-    font-size: 1.1rem;
-    font-weight: 600;
-    min-width: 50px;
+    font-size: 1.3rem;
+    font-weight: 800; /* Extra bold percentage */
+    min-width: 60px;
     text-align: right;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
