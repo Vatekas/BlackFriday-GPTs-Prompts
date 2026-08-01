@@ -4,3 +4,9 @@ update.mjs
 db/
 db.mjs
 /test3.mjs
+node_modules/
+package-lock.json
+package.json
+node_modules
+package-lock.json
+package.json
