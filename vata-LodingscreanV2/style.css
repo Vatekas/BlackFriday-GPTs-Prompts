@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body, html {
@@ -31,16 +31,16 @@ body, html {
     z-index: 10;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    background: rgba(20, 20, 20, 0.8);
-    padding: 15px;
-    border-radius: 8px;
+    gap: 8px;
+    background: rgba(20, 20, 20, 0.7);
+    padding: 10px 15px;
+    border-radius: 6px;
     color: white;
 }
 
 .controls {
     display: flex;
-    gap: 15px;
+    gap: 12px;
     justify-content: center;
 }
 
@@ -48,7 +48,7 @@ body, html {
     background: none;
     border: none;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: color 0.3s;
 }
@@ -79,31 +79,34 @@ body, html {
 }
 
 #flagBtn {
-    background: rgba(20, 20, 20, 0.8);
+    background: rgba(20, 20, 20, 0.7);
     border: none;
     color: white;
-    font-size: 1.5rem;
-    padding: 15px;
+    font-size: 1.2rem;
+    padding: 12px;
     border-radius: 50%;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
 }
 
 #flagBtn:hover {
     background: #3498db;
+    transform: scale(1.05);
 }
 
 #serverDescription {
     margin-top: 10px;
-    background: rgba(20, 20, 20, 0.9);
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
+    background: rgba(15, 15, 15, 0.85);
+    color: #e0e0e0;
+    padding: 15px;
+    border-radius: 6px;
+    width: 250px;
+    font-size: 0.9rem;
     text-align: left;
     transition: opacity 0.3s ease, transform 0.3s ease;
     opacity: 1;
     transform: translateY(0);
+    border-left: 3px solid #3498db;
 }
 
 #serverDescription.hidden {
@@ -114,7 +117,8 @@ body, html {
 
 #serverDescription h3 {
     color: #3498db;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
 }
 
 /* DID YOU KNOW */
@@ -126,44 +130,45 @@ body, html {
     z-index: 10;
     text-align: center;
     color: white;
-    background: rgba(20, 20, 20, 0.7);
-    padding: 30px;
-    border-radius: 12px;
-    min-width: 400px;
-    max-width: 600px;
+    background: transparent;
+    padding: 20px;
+    min-width: 300px;
+    max-width: 500px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .did-you-know h2 {
-    font-size: 2rem;
-    margin-bottom: 15px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    color: #3498db;
 }
 
 .did-you-know p {
-    font-size: 1.2rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.4;
     transition: opacity 0.5s ease;
 }
 
 /* LOADING BAR */
 .loading-container {
     position: absolute;
-    bottom: 50px;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80%;
+    width: 70%;
     z-index: 10;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 .loading-bar-wrapper {
     flex-grow: 1;
-    height: 30px;
+    height: 15px;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
+    border-radius: 8px;
     overflow: hidden;
 }
 
@@ -171,14 +176,15 @@ body, html {
     width: 0%;
     height: 100%;
     background-color: #3498db; /* Blue color, NO box-shadow as requested */
-    border-radius: 15px;
+    border-radius: 8px;
     transition: width 0.2s ease;
 }
 
 .loading-percentage {
     color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    min-width: 60px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    min-width: 50px;
     text-align: right;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
