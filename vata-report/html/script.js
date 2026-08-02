@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const app = document.getElementById('app');
-    const closeBtn = document.getElementById('close-btn');
     const sendBtn = document.getElementById('send-btn');
     const messageInput = document.getElementById('message-input');
     const chatArea = document.getElementById('chat-area');
@@ -19,11 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (item.type === 'newMessage') {
             appendMessage(item.messageData);
         }
-    });
-
-    // Close Button Event
-    closeBtn.addEventListener('click', () => {
-        closeUI();
     });
 
     // Close on Escape Key
@@ -72,23 +66,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function appendMessage(data) {
-        // Simple append for demo purposes, in reality would use DOM manipulation or a framework
-        // Depending on admin or user
         const timeStr = "prieš kelias akimirkas";
-        const html = `
-        <div class="message ${data.isAdmin ? 'admin-message' : 'user-message'}">
-            <div class="avatar"><img src="${data.isAdmin ? 'img/avatar2.png' : 'img/avatar1.png'}" alt="" onerror="this.src='https://ui-avatars.com/api/?name=${data.name}&background=${data.isAdmin ? 'f0c000' : '333'}&color=${data.isAdmin ? '000' : 'fff'}'"></div>
-            <div class="msg-content">
-                <div class="msg-header">
-                    <span class="name">${data.name}</span>
-                    <span class="role ${data.isAdmin ? 'badge-admin' : 'badge-user'}">${data.isAdmin ? 'Administratorius' : 'Jūs'}</span>
-                </div>
-                <div class="msg-text">${data.message}</div>
-                <div class="msg-time">${timeStr}</div>
-            </div>
-        </div>`;
 
-        chatArea.insertAdjacentHTML('beforeend', html);
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${data.isAdmin ? 'admin-message' : 'user-message'}`;
+
+        const avatarDiv = document.createElement('div');
+        avatarDiv.className = 'avatar';
+        const img = document.createElement('img');
+        img.src = data.isAdmin ? 'img/avatar2.png' : 'img/avatar1.png';
+        const safeName = encodeURIComponent(data.name || 'User');
+        img.onerror = function() {
+            this.src = `https://ui-avatars.com/api/?name=${safeName}&background=${data.isAdmin ? 'f0c000' : '333'}&color=${data.isAdmin ? '000' : 'fff'}`;
+        };
+        avatarDiv.appendChild(img);
+
+        const msgContent = document.createElement('div');
+        msgContent.className = 'msg-content';
+
+        const msgHeader = document.createElement('div');
+        msgHeader.className = 'msg-header';
+
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'name';
+        nameSpan.textContent = data.name; // Secure: uses textContent
+
+        const roleSpan = document.createElement('span');
+        roleSpan.className = `role ${data.isAdmin ? 'badge-admin' : 'badge-user'}`;
+        roleSpan.textContent = data.isAdmin ? 'Administratorius' : 'Jūs';
+
+        msgHeader.appendChild(nameSpan);
+        msgHeader.appendChild(roleSpan);
+
+        const textDiv = document.createElement('div');
+        textDiv.className = 'msg-text';
+        textDiv.textContent = data.message; // Secure: uses textContent
+
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'msg-time';
+        timeDiv.textContent = timeStr;
+
+        msgContent.appendChild(msgHeader);
+        msgContent.appendChild(textDiv);
+        msgContent.appendChild(timeDiv);
+
+        messageDiv.appendChild(avatarDiv);
+        messageDiv.appendChild(msgContent);
+
+        chatArea.appendChild(messageDiv);
         chatArea.scrollTop = chatArea.scrollHeight;
     }
 

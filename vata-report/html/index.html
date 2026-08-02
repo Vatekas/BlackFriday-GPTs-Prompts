@@ -5,82 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LunaX Pagalba</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div id="app" style="display: none;">
-        <div class="report-container">
-            <div class="sidebar">
+        <div class="app-wrapper">
+            <header class="top-header">
                 <div class="logo-area">
-                    <img src="img/logo.png" alt="Logo" class="logo-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
-                    <i class="fa-solid fa-layer-group fallback-logo" style="display: none;"></i>
-                    <span class="logo-text">LunaX Pagalba</span>
+                    <img src="img/lunax_logo.png" alt="LunaX">
+                    <span>LunaX Pagalba</span>
                 </div>
+            </header>
 
-                <div class="instructions">
-                    <h2>Pagalbos bilietas</h2>
-                    <p>Prieš kurdami bilietą, prašome Jūsų aiškiai išdėstyti problemą viena žinute, esant reikalui, prisekite ekrano nuotraukos kopiją, kad aiškiau suprastumėme jūsų esamą susiklosčiusią situaciją.</p>
-                </div>
-            </div>
-
-            <div class="main-content">
-                <div class="top-nav">
-                    <div class="tabs">
-                        <button class="tab active">Sukurti bilietą</button>
-                        <button class="tab disabled">Bilietų istorija</button>
+            <div class="report-container">
+                <div class="sidebar">
+                    <div class="instructions">
+                        <h2>Pagalbos bilietas</h2>
+                        <p>Prieš kurdami bilietą, prašome Jūsų aiškiai išdėstyti problemą viena žinute, esant reikalui, prisekite ekrano nuotraukos kopiją, kad aiškiau suprastumėme jūsų esamą susiklosčiusią situaciją.</p>
                     </div>
-                    <button class="close-btn" id="close-btn"><i class="fa-solid fa-xmark"></i></button>
                 </div>
 
-                <div class="chat-area" id="chat-area">
-                    <!-- Example Chat Messages -->
-                    <div class="message user-message">
-                        <div class="avatar"><img src="img/avatar1.png" alt="" onerror="this.src='https://ui-avatars.com/api/?name=User&background=333&color=fff'"></div>
-                        <div class="msg-content">
-                            <div class="msg-header">
-                                <span class="name">Šnypas Išlunax</span>
-                                <span class="role badge-user">Jūs</span>
+                <div class="main-content">
+                    <div class="chat-area" id="chat-area">
+                        <!-- Example Chat Messages -->
+                        <div class="message user-message">
+                            <div class="role badge-user">US</div>
+                            <div class="msg-content">
+                                <div class="msg-header">
+                                    <span class="name">Šnypas Išlunax</span>
+                                    <span class="role-badge-small">JŪS</span>
+                                </div>
+                                <div class="msg-text">Ką gauni už streamą</div>
+                                <div class="msg-time">prieš 5 min.</div>
                             </div>
-                            <div class="msg-text">Ką gauni už streamą</div>
-                            <div class="msg-time">prieš 5 min.</div>
+                        </div>
+
+                        <div class="system-message">
+                            Administratorius <span class="admin-name">alpukas</span> priėmė Jūsų pagalbos bilietą
+                        </div>
+
+                        <div class="message admin-message">
+                            <div class="role badge-admin">AD</div>
+                            <div class="msg-content">
+                                <div class="msg-header">
+                                    <span class="name">alpukas</span>
+                                    <span class="role-badge">ADMINISTRATORIUS</span>
+                                </div>
+                                <div class="msg-text">Sveiki, nieko. Nes pirma reike gauti streamerole, o kad ja gauti reikia kad jus ziuretu bent 20 zmoniu stabiliai</div>
+                                <div class="msg-time">prieš 2 min.</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="system-message">
-                        Administratorius <span class="admin-name">alpukas</span> priėmė Jūsų pagalbos bilietą
-                    </div>
-
-                    <div class="message admin-message">
-                        <div class="avatar"><img src="img/avatar2.png" alt="" onerror="this.src='https://ui-avatars.com/api/?name=Admin&background=f0c000&color=000'"></div>
-                        <div class="msg-content">
-                            <div class="msg-header">
-                                <span class="name">alpukas</span>
-                                <span class="role badge-admin">Administratorius</span>
-                            </div>
-                            <div class="msg-text">Sveiki, nieko. Nes pirma reike gauti streamerole, o kad ja gauti reikia kad jus ziuretu bent 20 zmoniu stabiliai</div>
-                            <div class="msg-time">prieš 2 min.</div>
+                    <div class="action-area">
+                        <div class="warning-banner">
+                            Nesulaukiate atsakymo? Ar reikalingo kito administratoriaus pagalba? Pasinaudokite šiom funkcijomis:
                         </div>
-                    </div>
-                </div>
 
-                <div class="action-area">
-                    <div class="warning-banner">
-                        Nesulaukiate atsakymo? Ar reikalingo kito administratoriaus pagalba? Pasinaudokite šiom funkcijomis:
-                    </div>
+                        <div class="action-buttons">
+                            <button class="action-btn">Noriu kito<br>administratoriaus</button>
+                            <button class="action-btn">Mano problema liko<br>neišspręsta</button>
+                            <button class="action-btn danger">Uždaryti pagalbos<br>prašymą</button>
+                        </div>
 
-                    <div class="action-buttons">
-                        <button class="action-btn">Noriu kito administratoriaus</button>
-                        <button class="action-btn">Mano problema liko neišspręsta</button>
-                        <button class="action-btn danger">Uždaryti pagalbos prašymą</button>
-                    </div>
-
-                    <div class="input-area">
-                        <input type="text" id="message-input" placeholder="Išsamus problemos aprašymas">
-                        <div class="input-actions">
-                            <i class="fa-regular fa-face-smile"></i>
-                            <i class="fa-solid fa-paperclip"></i>
-                            <i class="fa-solid fa-paper-plane send-btn" id="send-btn"></i>
+                        <div class="input-area">
+                            <input type="text" id="message-input" placeholder="Išsamus problemos aprašymas">
+                            <div class="input-actions">
+                                <i class="fa-regular fa-face-smile"></i>
+                                <i class="fa-solid fa-paperclip"></i>
+                                <i class="fa-solid fa-paper-plane send-btn" id="send-btn"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
