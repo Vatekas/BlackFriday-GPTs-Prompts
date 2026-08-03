@@ -55,7 +55,9 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
-    padding-left: 10px;
+    justify-content: flex-start;
+    padding: 0 10px;
+    gap: 40px;
 }
 
 .logo-area {
@@ -63,15 +65,43 @@ body {
     align-items: center;
     gap: 10px;
     font-weight: 800;
-    font-size: 16px;
+    font-size: 20px; /* Increased font size for 'Pagalba' */
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
 
 .logo-area img {
-    height: 24px;
+    height: 48px; /* Doubled from 24px */
     width: auto;
 }
+
+/* NAV TABS IN HEADER */
+.nav-tabs {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    transition: all 0.2s;
+}
+
+.nav-tab.active {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.nav-tab:hover:not(.active) {
+    color: var(--text-primary);
+}
+
 
 /* MAIN CONTAINER (FLEX ROW) */
 .report-container {
@@ -115,39 +145,6 @@ body {
     flex-direction: column;
     padding: 25px;
     gap: 15px;
-}
-
-/* NAV TABS */
-.content-header {
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 10px;
-}
-
-.nav-tabs {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-tab {
-    background: transparent;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 8px 16px;
-    border-radius: var(--radius-md);
-    transition: all 0.2s;
-}
-
-.nav-tab.active {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: var(--text-primary);
-}
-
-.nav-tab:hover:not(.active) {
-    color: var(--text-primary);
 }
 
 
