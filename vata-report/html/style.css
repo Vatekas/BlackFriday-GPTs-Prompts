@@ -274,8 +274,8 @@ body {
 }
 
 .warning-banner {
-    background-color: rgba(255, 170, 0, 0.05);
-    color: #cc9900;
+    background-color: #241D0C;
+    color: #E7A919;
     padding: 16px;
     border-radius: var(--radius-md);
     font-size: 12px;
@@ -291,7 +291,7 @@ body {
 
 .action-btn {
     flex: 1;
-    background-color: var(--bg-main);
+    background-color: #0d0d0d;
     border: none;
     color: var(--text-secondary);
     padding: 14px;
@@ -305,17 +305,18 @@ body {
 }
 
 .action-btn:hover {
-    background-color: var(--bg-input);
+    background-color: #1a1a1d;
     color: var(--text-primary);
 }
 
 .action-btn.danger {
-    background-color: var(--bg-main);
+    background-color: #0f0f0f; /* Slightly lighter grey for distinction in the screenshot */
     color: var(--text-secondary);
 }
 
 .action-btn.danger:hover {
-    color: var(--accent-red);
+    color: var(--text-primary);
+    background-color: #1a1a1d;
 }
 
 /* INPUT AREA */
@@ -324,6 +325,9 @@ body {
     align-items: center;
     height: 40px;
     margin-top: 5px;
+    background-color: #0d0d0d;
+    border-radius: var(--radius-md);
+    padding: 0 15px;
 }
 
 .input-area input {
@@ -360,4 +364,19 @@ body {
 
 .send-btn {
     margin-left: 5px;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: auto;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--accent-red);
 }

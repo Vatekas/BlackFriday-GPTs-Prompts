@@ -1,19 +1,20 @@
 local display = false
 
--- Register command to open UI
-RegisterCommand('report', function()
-    SetDisplay(not display)
-end, false)
-
 -- Function to toggle UI
-function SetDisplay(bool)
+function SetDisplay(bool, isAdmin)
     display = bool
     SetNuiFocus(bool, bool)
     SendNUIMessage({
         type = "ui",
         status = bool,
+        isAdmin = isAdmin or false
     })
 end
+
+RegisterNetEvent('vata-report:client:openUI')
+AddEventHandler('vata-report:client:openUI', function(isAdmin)
+    SetDisplay(true, isAdmin)
+end)
 
 -- NUI Callback to close UI
 RegisterNUICallback("closeUI", function(data, cb)
@@ -25,7 +26,7 @@ end)
 RegisterNUICallback("sendMessage", function(data, cb)
     local msg = data.message
     if msg and msg ~= "" then
-        TriggerServerEvent('vata-report:server:sendMessage', msg)
+        TriggerServerEvent('vata-report:server:sendMessage', { message = msg })
     end
     cb('ok')
 end)
@@ -42,5 +43,13 @@ AddEventHandler('vata-report:client:receiveMessage', function(messageData)
     SendNUIMessage({
         type = "newMessage",
         messageData = messageData
+    })
+end)
+
+RegisterNetEvent('vata-report:client:receiveSystemMessage')
+AddEventHandler('vata-report:client:receiveSystemMessage', function(message)
+    SendNUIMessage({
+        type = "systemMessage",
+        message = message
     })
 end)

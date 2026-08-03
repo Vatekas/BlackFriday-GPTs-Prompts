@@ -20,6 +20,7 @@
                     <button class="nav-tab active">Sukurti bilietą</button>
                     <button class="nav-tab">Bilietų istorija</button>
                 </div>
+                <button id="close-app-btn" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
             </header>
 
             <div class="report-container">
@@ -32,34 +33,7 @@
 
                 <div class="main-content">
                     <div class="chat-area" id="chat-area">
-                        <!-- Example Chat Messages -->
-                        <div class="message user-message">
-                            <div class="role badge-user">US</div>
-                            <div class="msg-content">
-                                <div class="msg-header">
-                                    <span class="name">Šnypas Išlunax</span>
-                                    <span class="role-badge-small">JŪS</span>
-                                </div>
-                                <div class="msg-text">Ką gauni už streamą</div>
-                                <div class="msg-time">prieš 5 min.</div>
-                            </div>
-                        </div>
-
-                        <div class="system-message">
-                            Administratorius <span class="admin-name">alpukas</span> priėmė Jūsų pagalbos bilietą
-                        </div>
-
-                        <div class="message admin-message">
-                            <div class="role badge-admin">AD</div>
-                            <div class="msg-content">
-                                <div class="msg-header">
-                                    <span class="name">alpukas</span>
-                                    <span class="role-badge">ADMINISTRATORIUS</span>
-                                </div>
-                                <div class="msg-text">Sveiki, nieko. Nes pirma reike gauti streamerole, o kad ja gauti reikia kad jus ziuretu bent 20 zmoniu stabiliai</div>
-                                <div class="msg-time">prieš 2 min.</div>
-                            </div>
-                        </div>
+                        <!-- Chat messages will be dynamically injected here -->
                     </div>
 
                     <div class="action-area">
@@ -68,9 +42,9 @@
                         </div>
 
                         <div class="action-buttons">
-                            <button class="action-btn">Noriu kito<br>administratoriaus</button>
-                            <button class="action-btn">Mano problema liko<br>neišspręsta</button>
-                            <button class="action-btn danger">Uždaryti pagalbos<br>prašymą</button>
+                            <button class="action-btn" id="btn-other-admin">Noriu kito administratoriaus</button>
+                            <button class="action-btn" id="btn-unresolved">Mano problema liko neišspręsta</button>
+                            <button class="action-btn danger" id="btn-close-ticket">Uždaryti pagalbos prašymą</button>
                         </div>
 
                         <div class="input-area">
