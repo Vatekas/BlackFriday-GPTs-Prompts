@@ -1,13 +1,11 @@
 :root {
     --bg-main: #0a0a0c; /* Outer dark wrap */
     --bg-panel: #111114; /* Sidebar and Main Content */
-    --bg-input: #1a1a1d;
+    --bg-input: #111114; /* Bottom buttons and input */
     --text-primary: #ffffff;
     --text-secondary: #8b8b92;
-    --accent-red: #ff3344;
-    --badge-admin: #0088ff;
-    --badge-admin-bg: rgba(0, 136, 255, 0.1);
-    --badge-user: #444444;
+    --accent-blue: #00a8ff;
+    --badge-admin: #ffcc00;
     --badge-user-bg: rgba(255, 255, 255, 0.05);
     --radius-lg: 12px;
     --radius-md: 8px;
@@ -63,22 +61,38 @@ body {
 .logo-area {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-weight: 800;
-    font-size: 20px; /* Increased font size for 'Pagalba' */
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+    gap: 15px;
 }
 
-.logo-area img {
-    height: 72px; /* Tripled from 24px */
-    width: auto;
+.text-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.logo-blue {
+    color: var(--accent-blue);
+}
+
+.logo-lt {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-left: 1px;
+}
+
+.logo-title {
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    color: #ffffff;
 }
 
 /* NAV TABS IN HEADER */
 .nav-tabs {
     display: flex;
-    gap: 20px;
+    gap: 15px;
 }
 
 .nav-tab {
@@ -88,13 +102,13 @@ body {
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    padding: 8px 16px;
+    padding: 10px 20px;
     border-radius: var(--radius-md);
     transition: all 0.2s;
 }
 
 .nav-tab.active {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: #161618;
     color: var(--text-primary);
 }
 
@@ -102,8 +116,22 @@ body {
     color: var(--text-primary);
 }
 
+/* CLOSE BUTTON */
+.close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: auto;
+    transition: color 0.2s;
+}
 
-/* MAIN CONTAINER (FLEX ROW) */
+.close-btn:hover {
+    color: #ff3344;
+}
+
+/* MAIN CONTAINER */
 .report-container {
     width: 100%;
     flex: 1;
@@ -147,7 +175,6 @@ body {
     gap: 15px;
 }
 
-
 /* CHAT AREA */
 .chat-area {
     flex: 1;
@@ -167,7 +194,7 @@ body {
 }
 
 .chat-area::-webkit-scrollbar-thumb {
-    background: var(--bg-input);
+    background: #1a1a1d;
     border-radius: 4px;
 }
 
@@ -191,7 +218,7 @@ body {
 }
 
 .badge-admin {
-    background-color: #ffcc00; /* Yellow from reference */
+    background-color: var(--badge-admin);
     color: #000;
 }
 
@@ -221,7 +248,7 @@ body {
 }
 
 .role-badge {
-    background-color: #ffcc00;
+    background-color: var(--badge-admin);
     color: #000;
     font-size: 10px;
     font-weight: 800;
@@ -261,7 +288,7 @@ body {
 }
 
 .admin-name {
-    color: #ffcc00;
+    color: var(--badge-admin);
     font-weight: 700;
 }
 
@@ -291,7 +318,7 @@ body {
 
 .action-btn {
     flex: 1;
-    background-color: #0d0d0d;
+    background-color: var(--bg-input);
     border: none;
     color: var(--text-secondary);
     padding: 14px;
@@ -310,7 +337,7 @@ body {
 }
 
 .action-btn.danger {
-    background-color: #0f0f0f; /* Slightly lighter grey for distinction in the screenshot */
+    background-color: var(--bg-input);
     color: var(--text-secondary);
 }
 
@@ -325,7 +352,7 @@ body {
     align-items: center;
     height: 40px;
     margin-top: 5px;
-    background-color: #0d0d0d;
+    background-color: var(--bg-input);
     border-radius: var(--radius-md);
     padding: 0 15px;
 }
@@ -364,19 +391,4 @@ body {
 
 .send-btn {
     margin-left: 5px;
-}
-
-/* CLOSE BUTTON */
-.close-btn {
-    background: transparent;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 24px;
-    cursor: pointer;
-    margin-left: auto;
-    transition: color 0.2s;
-}
-
-.close-btn:hover {
-    color: var(--accent-red);
 }

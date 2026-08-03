@@ -169,9 +169,7 @@ AddEventHandler('vata-report:server:closeTicket', function()
             local targetAdmin = activeTickets[src].targetAdmin
             if targetAdmin and GetPlayerName(targetAdmin) then
                 TriggerClientEvent('chat:addMessage', targetAdmin, { args = { '^3SISTEMA', 'Žaidėjas '..src..' uždarė savo bilietą.' } })
-                if activeAdmins[targetAdmin] and activeAdmins[targetAdmin].isHandling == src then
-                    activeAdmins[targetAdmin] = nil
-                end
+                activeAdmins[targetAdmin] = nil
             end
             activeTickets[src] = nil
             TriggerClientEvent('vata-report:client:receiveSystemMessage', src, "Jūs uždarėte pagalbos bilietą.")
