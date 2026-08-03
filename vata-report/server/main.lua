@@ -50,6 +50,9 @@ RegisterCommand('reply', function(source, args, rawCommand)
         return
     end
 
+    -- Clear admin's chat history in UI when switching tickets
+    TriggerClientEvent('vata-report:client:clearChat', source)
+
     -- Assign admin to ticket
     if not activeTickets[targetId] then
         activeTickets[targetId] = { messages = {} }
@@ -60,6 +63,12 @@ RegisterCommand('reply', function(source, args, rawCommand)
     local adminName = getPlayerName(source)
     TriggerClientEvent('vata-report:client:receiveSystemMessage', targetId, "Administratorius " .. adminName .. " priėmė Jūsų pagalbos bilietą")
     TriggerClientEvent('chat:addMessage', source, { args = { '^2SISTEMA', 'Dabar aptarnaujate žaidėją ' .. targetId } })
+
+    -- Send ticket history to admin
+    for _, msg in ipairs(activeTickets[targetId].messages) do
+        TriggerClientEvent('vata-report:client:receiveMessage', source, msg)
+    end
+
     TriggerClientEvent('vata-report:client:openUI', source, true)
 end, false)
 
@@ -81,36 +90,50 @@ AddEventHandler('vata-report:server:sendMessage', function(data)
     local senderName = getPlayerName(src)
     local isSenderAdmin = isAdmin(src)
 
-    -- Determine routing
-    if isSenderAdmin then
-        -- Admin replying
-        local handlingData = activeAdmins[src]
-        if handlingData and handlingData.isHandling then
-            local targetId = handlingData.isHandling
+    -- Check if admin is currently handling a ticket
+    local handlingData = isSenderAdmin and activeAdmins[src] or nil
 
-            -- Send to user
-            TriggerClientEvent('vata-report:client:receiveMessage', targetId, {
-                sender = senderName,
-                message = message,
-                role = 'admin',
-                time = 'ką tik'
-            })
+    if handlingData and handlingData.isHandling then
+        -- Admin replying to an active ticket
+        local targetId = handlingData.isHandling
 
-            -- Send back to admin for UI update
-            TriggerClientEvent('vata-report:client:receiveMessage', src, {
-                sender = senderName,
-                message = message,
-                role = 'admin',
-                time = 'ką tik'
-            })
-        else
-            TriggerClientEvent('chat:addMessage', src, { args = { '^1KLAIDA', 'Jūs neaptarnaujate jokio žaidėjo. Naudokite /reply [ID]' } })
+        local msgPayloadToUser = {
+            sender = senderName,
+            message = message,
+            role = 'admin',
+            time = 'ką tik'
+        }
+
+        local msgPayloadToAdmin = {
+            sender = senderName,
+            message = message,
+            role = 'admin',
+            time = 'ką tik'
+        }
+
+        if activeTickets[targetId] then
+             table.insert(activeTickets[targetId].messages, msgPayloadToAdmin)
         end
+
+        -- Send to user
+        TriggerClientEvent('vata-report:client:receiveMessage', targetId, msgPayloadToUser)
+        -- Send back to admin for UI update
+        TriggerClientEvent('vata-report:client:receiveMessage', src, msgPayloadToAdmin)
     else
-        -- Regular user sending report
+        -- Regular user sending report (or admin sending their own report)
         if not activeTickets[src] then
             activeTickets[src] = { messages = {} }
         end
+
+        local msgPayload = {
+            sender = senderName,
+            message = message,
+            role = 'user',
+            time = 'ką tik',
+            playerId = src
+        }
+
+        table.insert(activeTickets[src].messages, msgPayload)
 
         -- Send back to user for UI
         TriggerClientEvent('vata-report:client:receiveMessage', src, {
@@ -124,26 +147,15 @@ AddEventHandler('vata-report:server:sendMessage', function(data)
 
         if targetAdmin and GetPlayerName(targetAdmin) then
             -- Send directly to handling admin
-            TriggerClientEvent('vata-report:client:receiveMessage', targetAdmin, {
-                sender = senderName,
-                message = message,
-                role = 'user',
-                time = 'ką tik',
-                playerId = src
-            })
+            TriggerClientEvent('vata-report:client:receiveMessage', targetAdmin, msgPayload)
         else
             -- Broadcast to all admins that a new unassigned message came in
             local players = ESX.GetPlayers()
             for i=1, #players, 1 do
                 local adminSrc = players[i]
-                if isAdmin(adminSrc) then
-                    TriggerClientEvent('vata-report:client:receiveMessage', adminSrc, {
-                        sender = senderName,
-                        message = message,
-                        role = 'user',
-                        time = 'ką tik',
-                        playerId = src
-                    })
+                if isAdmin(adminSrc) and (not activeAdmins[adminSrc] or not activeAdmins[adminSrc].isHandling) then
+                    -- Only broadcast to admins NOT currently handling a ticket
+                    TriggerClientEvent('vata-report:client:receiveMessage', adminSrc, msgPayload)
                 end
             end
         end
@@ -185,7 +197,9 @@ AddEventHandler('playerDropped', function(reason)
         local targetAdmin = activeTickets[src].targetAdmin
         if targetAdmin and GetPlayerName(targetAdmin) then
              TriggerClientEvent('chat:addMessage', targetAdmin, { args = { '^3SISTEMA', 'Žaidėjas '..src..' atsijungė.' } })
-             activeAdmins[targetAdmin] = nil
+             if activeAdmins[targetAdmin] and activeAdmins[targetAdmin].isHandling == src then
+                activeAdmins[targetAdmin] = nil
+             end
         end
         activeTickets[src] = nil
     end

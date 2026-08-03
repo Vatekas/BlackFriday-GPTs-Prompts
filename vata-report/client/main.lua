@@ -16,6 +16,13 @@ AddEventHandler('vata-report:client:openUI', function(isAdmin)
     SetDisplay(true, isAdmin)
 end)
 
+RegisterNetEvent('vata-report:client:clearChat')
+AddEventHandler('vata-report:client:clearChat', function()
+    SendNUIMessage({
+        type = "clearChat"
+    })
+end)
+
 -- NUI Callback to close UI
 RegisterNUICallback("closeUI", function(data, cb)
     SetDisplay(false)

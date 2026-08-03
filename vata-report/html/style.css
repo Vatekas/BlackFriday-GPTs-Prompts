@@ -65,10 +65,10 @@ body {
 }
 
 .text-logo {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 700;
     color: #ffffff;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
 }
 
 .logo-blue {
@@ -76,7 +76,7 @@ body {
 }
 
 .logo-lt {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
     color: var(--text-secondary);
     margin-left: 1px;
@@ -84,7 +84,7 @@ body {
 
 .logo-title {
     font-weight: 800;
-    font-size: 20px;
+    font-size: 26px;
     letter-spacing: 0.5px;
     color: #ffffff;
 }
@@ -320,7 +320,7 @@ body {
     flex: 1;
     background-color: var(--bg-input);
     border: none;
-    color: var(--text-secondary);
+    color: #606F7B;
     padding: 14px;
     border-radius: var(--radius-md);
     font-size: 11px;
@@ -338,7 +338,7 @@ body {
 
 .action-btn.danger {
     background-color: var(--bg-input);
-    color: var(--text-secondary);
+    color: #606F7B;
 }
 
 .action-btn.danger:hover {

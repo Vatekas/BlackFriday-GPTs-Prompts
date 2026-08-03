@@ -5,7 +5,7 @@ window.addEventListener('message', function(event) {
     let data = event.data;
 
     if (data.type === 'ui') {
-        isAdmin = data.isAdmin || false; // Backend needs to send isAdmin status eventually
+        isAdmin = data.isAdmin || false;
         if (data.status) {
             document.getElementById('app').style.display = 'flex';
             isUIOpen = true;
@@ -18,6 +18,8 @@ window.addEventListener('message', function(event) {
         appendMessage(msg.name || msg.sender, msg.message, msg.role, msg.time, msg.playerId);
     } else if (data.type === 'systemMessage') {
         appendSystemMessage(data.message);
+    } else if (data.type === 'clearChat') {
+        document.getElementById('chat-area').innerHTML = '';
     }
 });
 
