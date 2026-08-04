@@ -3,42 +3,42 @@
 
 local recoils = {
     -- Assault Rifles (Automatukai)
-    [GetHashKey("WEAPON_ASSAULTRIFLE")] = { recoil = 0.5, canHaveGrip = true },
-    [GetHashKey("WEAPON_CARBINERIFLE")] = { recoil = 0.5, canHaveGrip = true },
-    [GetHashKey("WEAPON_ADVANCEDRIFLE")] = { recoil = 0.5, canHaveGrip = true },
-    [GetHashKey("WEAPON_SPECIALCARBINE")] = { recoil = 0.5, canHaveGrip = true },
-    [GetHashKey("WEAPON_BULLPUPRIFLE")] = { recoil = 0.5, canHaveGrip = true },
-    [GetHashKey("WEAPON_COMPACTRIFLE")] = { recoil = 0.5, canHaveGrip = false },
+    [GetHashKey("WEAPON_ASSAULTRIFLE")] = { recoil = 0.6, canHaveGrip = true },
+    [GetHashKey("WEAPON_CARBINERIFLE")] = { recoil = 0.6, canHaveGrip = true },
+    [GetHashKey("WEAPON_ADVANCEDRIFLE")] = { recoil = 0.6, canHaveGrip = true },
+    [GetHashKey("WEAPON_SPECIALCARBINE")] = { recoil = 0.6, canHaveGrip = true },
+    [GetHashKey("WEAPON_BULLPUPRIFLE")] = { recoil = 0.6, canHaveGrip = true },
+    [GetHashKey("WEAPON_COMPACTRIFLE")] = { recoil = 0.6, canHaveGrip = false },
 
     -- SMGs (Pusautomačiai)
-    [GetHashKey("WEAPON_SMG")] = { recoil = 0.4, canHaveGrip = true },
-    [GetHashKey("WEAPON_MICROSMG")] = { recoil = 0.4, canHaveGrip = false },
-    [GetHashKey("WEAPON_ASSAULTSMG")] = { recoil = 0.4, canHaveGrip = true },
-    [GetHashKey("WEAPON_COMBATPDW")] = { recoil = 0.4, canHaveGrip = true },
-    [GetHashKey("WEAPON_MACHINEPISTOL")] = { recoil = 0.4, canHaveGrip = false },
-    [GetHashKey("WEAPON_MINISMG")] = { recoil = 0.4, canHaveGrip = false },
+    [GetHashKey("WEAPON_SMG")] = { recoil = 0.5, canHaveGrip = true },
+    [GetHashKey("WEAPON_MICROSMG")] = { recoil = 0.5, canHaveGrip = false },
+    [GetHashKey("WEAPON_ASSAULTSMG")] = { recoil = 0.5, canHaveGrip = true },
+    [GetHashKey("WEAPON_COMBATPDW")] = { recoil = 0.5, canHaveGrip = true },
+    [GetHashKey("WEAPON_MACHINEPISTOL")] = { recoil = 0.5, canHaveGrip = false },
+    [GetHashKey("WEAPON_MINISMG")] = { recoil = 0.5, canHaveGrip = false },
 
     -- Shotguns (Šautuvai)
-    [GetHashKey("WEAPON_PUMPSHOTGUN")] = { recoil = 1.8, canHaveGrip = false },
-    [GetHashKey("WEAPON_SAWNOFFSHOTGUN")] = { recoil = 2.0, canHaveGrip = false },
-    [GetHashKey("WEAPON_ASSAULTSHOTGUN")] = { recoil = 1.4, canHaveGrip = true },
-    [GetHashKey("WEAPON_BULLPUPSHOTGUN")] = { recoil = 1.5, canHaveGrip = true },
-    [GetHashKey("WEAPON_HEAVYSHOTGUN")] = { recoil = 1.8, canHaveGrip = true },
-    [GetHashKey("WEAPON_DBSHOTGUN")] = { recoil = 2.0, canHaveGrip = false },
-    [GetHashKey("WEAPON_AUTOSHOTGUN")] = { recoil = 1.5, canHaveGrip = false },
+    [GetHashKey("WEAPON_PUMPSHOTGUN")] = { recoil = 2.2, canHaveGrip = false },
+    [GetHashKey("WEAPON_SAWNOFFSHOTGUN")] = { recoil = 2.4, canHaveGrip = false },
+    [GetHashKey("WEAPON_ASSAULTSHOTGUN")] = { recoil = 1.7, canHaveGrip = true },
+    [GetHashKey("WEAPON_BULLPUPSHOTGUN")] = { recoil = 1.8, canHaveGrip = true },
+    [GetHashKey("WEAPON_HEAVYSHOTGUN")] = { recoil = 2.2, canHaveGrip = true },
+    [GetHashKey("WEAPON_DBSHOTGUN")] = { recoil = 2.4, canHaveGrip = false },
+    [GetHashKey("WEAPON_AUTOSHOTGUN")] = { recoil = 1.8, canHaveGrip = false },
 
     -- Pistols (Pistoletai ir Deagle)
-    [GetHashKey("WEAPON_PISTOL")] = { recoil = 0.6, isPistol = true },
-    [GetHashKey("WEAPON_COMBATPISTOL")] = { recoil = 0.6, isPistol = true },
-    [GetHashKey("WEAPON_APPISTOL")] = { recoil = 0.5, isPistol = true },
-    [GetHashKey("WEAPON_PISTOL50")] = { recoil = 1.6, isPistol = true }, -- Deagle (stipresnė atatranka)
-    [GetHashKey("WEAPON_SNSPISTOL")] = { recoil = 0.6, isPistol = true },
-    [GetHashKey("WEAPON_HEAVYPISTOL")] = { recoil = 0.8, isPistol = true },
-    [GetHashKey("WEAPON_VINTAGEPISTOL")] = { recoil = 0.6, isPistol = true },
-    [GetHashKey("WEAPON_MARKSMANPISTOL")] = { recoil = 1.0, isPistol = true },
-    [GetHashKey("WEAPON_REVOLVER")] = { recoil = 1.4, isPistol = true },
-    [GetHashKey("WEAPON_CERAMICPISTOL")] = { recoil = 0.6, isPistol = true },
-    [GetHashKey("WEAPON_NAVYREVOLVER")] = { recoil = 1.4, isPistol = true },
+    [GetHashKey("WEAPON_PISTOL")] = { recoil = 0.7, isPistol = true },
+    [GetHashKey("WEAPON_COMBATPISTOL")] = { recoil = 0.7, isPistol = true },
+    [GetHashKey("WEAPON_APPISTOL")] = { recoil = 0.6, isPistol = true },
+    [GetHashKey("WEAPON_PISTOL50")] = { recoil = 1.9, isPistol = true }, -- Deagle (stipresnė atatranka)
+    [GetHashKey("WEAPON_SNSPISTOL")] = { recoil = 0.7, isPistol = true },
+    [GetHashKey("WEAPON_HEAVYPISTOL")] = { recoil = 1.0, isPistol = true },
+    [GetHashKey("WEAPON_VINTAGEPISTOL")] = { recoil = 0.7, isPistol = true },
+    [GetHashKey("WEAPON_MARKSMANPISTOL")] = { recoil = 1.2, isPistol = true },
+    [GetHashKey("WEAPON_REVOLVER")] = { recoil = 1.7, isPistol = true },
+    [GetHashKey("WEAPON_CERAMICPISTOL")] = { recoil = 0.7, isPistol = true },
+    [GetHashKey("WEAPON_NAVYREVOLVER")] = { recoil = 1.7, isPistol = true },
 }
 
 local gripHashes = {
