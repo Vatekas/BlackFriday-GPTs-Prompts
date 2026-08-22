@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('notify-container');
 
     const icons = {
-        success: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="9 12 11 14 15 10"></polyline></svg>`,
-        error: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`,
-        warning: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`,
-        info: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#3b82f6"/><text x="12" y="16.5" text-anchor="middle" font-family="'Poppins', sans-serif" font-style="italic" font-weight="700" font-size="14" fill="#0d0e0f">i</text></svg>`
+        success: `<svg viewBox="0 0 24 24" fill="none" stroke="#2ed573" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="9 12 11 14 15 10"></polyline></svg>`,
+        error: `<svg viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`,
+        warning: `<svg viewBox="0 0 24 24" fill="none" stroke="#ffa502" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`,
+        info: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#3b82f6"/><circle cx="12" cy="8" r="1.25" fill="#ffffff"/><line x1="12" y1="11" x2="12" y2="16" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/></svg>`
     };
 
     window.addEventListener('message', (event) => {

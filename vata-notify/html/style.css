@@ -21,7 +21,7 @@ body {
     z-index: 9999;
     padding: 20px;
     pointer-events: none;
-    max-width: 420px;
+    max-width: 480px;
     width: 100%;
 }
 
@@ -68,8 +68,8 @@ body {
     background-color: #0d0e0f;
     border-radius: 8px;
     padding: 16px 20px;
-    min-width: 320px;
-    max-width: 400px;
+    min-width: 340px;
+    max-width: 460px;
     width: fit-content;
     overflow: hidden;
     color: #ffffff;
