@@ -83,24 +83,21 @@ body {
     animation: slideOut 0.3s cubic-bezier(0.7, 0, 0.84, 0) forwards;
 }
 
-/* Subtle top-right background pattern from pattern.png */
+/* Top-right background pattern from pattern.png */
 .notification::before {
     content: '';
     position: absolute;
     top: 0;
     right: 0;
-    width: 140px;
-    height: 100%;
+    width: 80px;
+    height: 80px;
     background-image: url('pattern.png');
-    background-size: cover;
+    background-size: contain;
     background-position: top right;
     background-repeat: no-repeat;
-    opacity: 0.15;
+    opacity: 0.3;
     border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
     pointer-events: none;
-    mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
-    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
 }
 
 .notification-content {
