@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Menu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app" style="display: none;">
+        <div class="sidebar">
+            <div class="time-block">
+                <div id="time-hour">08</div>
+                <div id="time-minute">10</div>
+            </div>
+            <div class="sidebar-icons">
+                <div class="icon active"><i class="fa-solid fa-car"></i></div>
+            </div>
+            <div class="power-btn" onclick="closeMenu()">
+                <i class="fa-solid fa-power-off"></i>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <div class="weather">
+                    <i class="fa-solid fa-cloud-rain"></i>
+                    <div class="weather-text">
+                        <span class="weather-label" id="lang-weather-title">WEATHER</span>
+                        <span class="weather-value">RAIN</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car-visualization">
+                <div class="car-image">
+                    <img src="img/car.png" alt="Car" style="width: 100%; height: 100%; object-fit: contain;">
+                    <!-- Lock icons -->
+                    <div class="lock-icon fl" onclick="toggleDoor(0)"><i class="fa-solid fa-lock"></i></div>
+                    <div class="lock-icon fr" onclick="toggleDoor(1)"><i class="fa-solid fa-lock"></i></div>
+                    <div class="lock-icon rl" onclick="toggleDoor(2)"><i class="fa-solid fa-lock"></i></div>
+                    <div class="lock-icon rr" onclick="toggleDoor(3)"><i class="fa-solid fa-lock"></i></div>
+                    <div class="lock-icon hood" onclick="toggleDoor(4)"><i class="fa-solid fa-lock"></i></div>
+                    <div class="lock-icon trunk" onclick="toggleDoor(5)"><i class="fa-solid fa-lock"></i></div>
+                </div>
+
+                <div class="fuel-bar-container">
+                    <div class="fuel-bar">
+                        <div class="fuel-fill" id="fuel-fill" style="height: 60%;"></div>
+                    </div>
+                    <i class="fa-solid fa-gas-pump fuel-icon"></i>
+                </div>
+            </div>
+
+            <div class="controls-row">
+                <div class="control-btn" id="lock-btn" onclick="toggleLock()">
+                    <i class="fa-solid fa-lock" style="color: #b3ff00;"></i>
+                    <span id="lang-lock">Lock</span>
+                </div>
+                <div class="control-btn" onclick="changeSeat()">
+                    <i class="fa-solid fa-chair" style="color: #b3ff00;"></i>
+                    <span id="lang-seat">Seat</span>
+                </div>
+                <div class="control-btn" id="engine-btn" onclick="toggleEngine()">
+                    <i class="fa-solid fa-power-off" style="color: #b3ff00;"></i>
+                    <span id="lang-engine">Engine</span>
+                </div>
+                <div class="control-btn" onclick="toggleInteriorLight()">
+                    <i class="fa-solid fa-lightbulb" style="color: #b3ff00;"></i>
+                    <span id="lang-interior">Interior<br>Light</span>
+                </div>
+                <div class="control-btn" onclick="toggleLights()">
+                    <i class="fa-regular fa-lightbulb" style="color: #b3ff00;"></i>
+                    <span id="lang-lights">Lights</span>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <div class="info-card location-card">
+                    <i class="fa-solid fa-location-dot location-icon"></i>
+                    <div class="info-text">
+                        <span class="label" id="street-name">North Rockford</span>
+                        <span class="value" id="heading">678m</span>
+                    </div>
+                </div>
+                <div class="info-card temp-card">
+                    <i class="fa-solid fa-temperature-half temp-icon"></i>
+                    <div class="info-text">
+                        <span class="label" id="lang-engine-temp-label">Engine</span>
+                        <span class="value"><span id="engine-temp">89</span>&deg;</span>
+                    </div>
+                </div>
+                <div class="info-card emergency-card">
+                    <div class="emergency-icon-container">
+                        <i class="fa-solid fa-triangle-exclamation emergency-icon"></i>
+                    </div>
+                    <div class="emergency-toggle">
+                        <span class="label" id="lang-emergency">Emergency</span>
+                        <label class="switch">
+                            <input type="checkbox" id="hazard-toggle" onchange="toggleHazards()">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

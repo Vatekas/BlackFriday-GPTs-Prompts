@@ -1,0 +1,291 @@
+local menuOpen = false
+local updateLoopActive = false
+local wasInVehicle = false
+
+-- Engine auto-start prevention
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(100)
+        local ped = PlayerPedId()
+        local isInVehicle = IsPedInAnyVehicle(ped, false)
+
+        if isInVehicle and not wasInVehicle then
+            local vehicle = GetVehiclePedIsIn(ped, false)
+            if vehicle and vehicle ~= 0 then
+                -- Only disable auto engine start if it wasn't already running
+                if not GetIsVehicleEngineRunning(vehicle) then
+                    SetVehicleEngineOn(vehicle, false, true, true)
+                end
+            end
+        end
+        wasInVehicle = isInVehicle
+    end
+end)
+
+-- Open Menu Command and KeyMapping
+RegisterCommand('openvehiclemenu', function()
+    local ped = PlayerPedId()
+    if IsPedInAnyVehicle(ped, false) then
+        if not menuOpen then
+            SetNuiFocus(true, true)
+
+            local currentLocale = Config.Locale or 'en'
+            local trans = Locales[currentLocale] or Locales['en']
+
+            SendNUIMessage({
+                type = "openMenu",
+                translations = trans
+            })
+            menuOpen = true
+
+            if not updateLoopActive then
+                updateLoopActive = true
+                StartUpdateLoop()
+            end
+        end
+    end
+end, false)
+
+RegisterKeyMapping('openvehiclemenu', 'Open Vehicle Menu', 'keyboard', 'G')
+
+-- Update Loop for NUI Data
+function StartUpdateLoop()
+    Citizen.CreateThread(function()
+        while updateLoopActive do
+            Citizen.Wait(200) -- Update 5 times a second for smoother dynamic updates
+
+            if menuOpen then
+                local ped = PlayerPedId()
+                local vehicle = GetVehiclePedIsIn(ped, false)
+
+                if vehicle and vehicle ~= 0 then
+                    local coords = GetEntityCoords(ped)
+                    local streetHash, crossingHash = GetStreetNameAtCoord(coords.x, coords.y, coords.z)
+                    local streetName = GetStreetNameFromHashKey(streetHash)
+
+                    local engineTemp = GetVehicleEngineTemperature(vehicle)
+                    local fuelLevel = math.floor(GetVehicleFuelLevel(vehicle) + 0.5)
+                    local engineRunning = GetIsVehicleEngineRunning(vehicle)
+
+                    local waypointDistance = 0
+                    if IsWaypointActive() then
+                        local waypointCoords = GetBlipCoords(GetFirstBlipInfoId(8))
+                        local distance = #(coords - waypointCoords)
+                        waypointDistance = math.floor(distance)
+                    end
+
+                    local weatherHash = GetNextWeatherTypeHashName()
+                    local weatherName = "CLEAR"
+                    if weatherHash == GetHashKey("EXTRASUNNY") or weatherHash == GetHashKey("CLEAR") or weatherHash == GetHashKey("NEUTRAL") then
+                        weatherName = "CLEAR"
+                    elseif weatherHash == GetHashKey("CLOUDS") or weatherHash == GetHashKey("OVERCAST") then
+                        weatherName = "CLOUDY"
+                    elseif weatherHash == GetHashKey("SMOG") or weatherHash == GetHashKey("FOGGY") then
+                        weatherName = "FOGGY"
+                    elseif weatherHash == GetHashKey("RAIN") then
+                        weatherName = "RAIN"
+                    elseif weatherHash == GetHashKey("THUNDER") then
+                        weatherName = "THUNDER"
+                    elseif weatherHash == GetHashKey("CLEARING") then
+                        weatherName = "CLEARING"
+                    elseif weatherHash == GetHashKey("SNOW") or weatherHash == GetHashKey("SNOWLIGHT") then
+                        weatherName = "SNOW"
+                    elseif weatherHash == GetHashKey("BLIZZARD") then
+                        weatherName = "BLIZZARD"
+                    elseif weatherHash == GetHashKey("HALLOWEEN") then
+                        weatherName = "SPOOKY"
+                    end
+
+
+                    local time = {
+                        hour = GetClockHours(),
+                        minute = GetClockMinutes()
+                    }
+
+                    local doors = {}
+                    for i = 0, 5 do
+                        doors[tostring(i)] = GetVehicleDoorAngleRatio(vehicle, i) > 0.0
+                    end
+                    local lockStatus = GetVehicleDoorLockStatus(vehicle)
+
+                    SendNUIMessage({
+                        type = "updateData",
+                        street = streetName,
+                        temperature = engineTemp,
+                        fuel = fuelLevel,
+                        engineRunning = engineRunning,
+                        time = time,
+                        doors = doors,
+                        lockStatus = lockStatus,
+                        waypoint = waypointDistance,
+                        weather = weatherName
+                    })
+                else
+                    -- Auto close if player left vehicle while menu was open
+                    CloseMenu()
+                end
+            else
+                updateLoopActive = false
+            end
+        end
+    end)
+end
+
+function CloseMenu()
+    menuOpen = false
+    SetNuiFocus(false, false)
+    SendNUIMessage({
+        type = "closeMenu"
+    })
+end
+
+-- NUI Callbacks
+RegisterNUICallback('closeMenu', function(data, cb)
+    CloseMenu()
+    cb('ok')
+end)
+
+RegisterNUICallback('toggleEngine', function(data, cb)
+    cb('ok')
+    local ped = PlayerPedId()
+    local vehicle = GetVehiclePedIsIn(ped, false)
+    if vehicle and vehicle ~= 0 then
+        local isRunning = GetIsVehicleEngineRunning(vehicle)
+
+        -- If turning ON, show progress bar
+        if not isRunning then
+            local currentLocale = Config.Locale or 'en'
+            local trans = Locales[currentLocale] or Locales['en']
+            local label = trans.starting_engine or 'Starting engine...'
+
+            -- Use ox_lib progress bar if available
+            if lib and lib.progressBar then
+                Citizen.CreateThread(function()
+                    local success = lib.progressBar({
+                        duration = 2000,
+                        label = label,
+                        useWhileDead = false,
+                        canCancel = true,
+                        disable = {
+                            car = true,
+                        }
+                    })
+
+                    if success then
+                        -- Verify player is still in the vehicle after progress
+                        local newVehicle = GetVehiclePedIsIn(ped, false)
+                        if newVehicle == vehicle then
+                             SetVehicleEngineOn(vehicle, true, false, true)
+                        end
+                    end
+                end)
+            else
+                -- Fallback if ox_lib isn't correctly loaded somehow
+                SetVehicleEngineOn(vehicle, true, false, true)
+            end
+        else
+            -- Turning off is instant
+            SetVehicleEngineOn(vehicle, false, false, true)
+        end
+    end
+end)
+
+RegisterNUICallback('changeSeat', function(data, cb)
+    local ped = PlayerPedId()
+    local vehicle = GetVehiclePedIsIn(ped, false)
+    if vehicle and vehicle ~= 0 then
+        local maxSeats = GetVehicleMaxNumberOfPassengers(vehicle)
+        local currentSeat = -1 -- Default to attempting to find a seat if we can't determine current
+
+        -- Find current seat
+        for i = -1, maxSeats - 1 do
+            if GetPedInVehicleSeat(vehicle, i) == ped then
+                currentSeat = i
+                break
+            end
+        end
+
+        -- Find next available seat
+        local foundSeat = false
+        for i = 1, maxSeats do
+            local nextSeat = currentSeat + i
+            if nextSeat >= maxSeats then nextSeat = nextSeat - (maxSeats + 1) end -- Wrap around (-1 to maxSeats-1)
+
+            if IsVehicleSeatFree(vehicle, nextSeat) then
+                TaskWarpPedIntoVehicle(ped, vehicle, nextSeat)
+                foundSeat = true
+                break
+            end
+        end
+    end
+    cb('ok')
+end)
+
+RegisterNUICallback('toggleLock', function(data, cb)
+    local ped = PlayerPedId()
+    local vehicle = GetVehiclePedIsIn(ped, false)
+    if vehicle and vehicle ~= 0 then
+        local lockStatus = GetVehicleDoorLockStatus(vehicle)
+        if lockStatus == 1 or lockStatus == 0 then
+            SetVehicleDoorsLocked(vehicle, 2) -- Locked
+        else
+            SetVehicleDoorsLocked(vehicle, 1) -- Unlocked
+        end
+    end
+    cb('ok')
+end)
+
+RegisterNUICallback('toggleDoor', function(data, cb)
+    local ped = PlayerPedId()
+    local vehicle = GetVehiclePedIsIn(ped, false)
+    if vehicle and vehicle ~= 0 then
+        local doorIndex = data.door
+        if GetVehicleDoorAngleRatio(vehicle, doorIndex) > 0.0 then
+            SetVehicleDoorShut(vehicle, doorIndex, false)
+        else
+            SetVehicleDoorOpen(vehicle, doorIndex, false, false)
+        end
+    end
+    cb('ok')
+end)
+
+RegisterNUICallback('toggleInteriorLight', function(data, cb)
+    local ped = PlayerPedId()
+    local vehicle = GetVehiclePedIsIn(ped, false)
+    if vehicle and vehicle ~= 0 then
+        -- Native for interior lights toggle isn't straightforward without specific state tracking,
+        -- but SetVehicleInteriorlight can be used.
+        local state = IsVehicleInteriorLightOn(vehicle)
+        SetVehicleInteriorlight(vehicle, not state)
+    end
+    cb('ok')
+end)
+
+RegisterNUICallback('toggleLights', function(data, cb)
+    local ped = PlayerPedId()
+    local vehicle = GetVehiclePedIsIn(ped, false)
+    if vehicle and vehicle ~= 0 then
+        local _, lightsOn, highbeamsOn = GetVehicleLightsState(vehicle)
+        if lightsOn == 1 or highbeamsOn == 1 then
+            SetVehicleLights(vehicle, 0) -- Off
+        else
+            SetVehicleLights(vehicle, 2) -- On
+        end
+    end
+    cb('ok')
+end)
+
+RegisterNUICallback('toggleHazards', function(data, cb)
+    local ped = PlayerPedId()
+    local vehicle = GetVehiclePedIsIn(ped, false)
+    if vehicle and vehicle ~= 0 then
+        if data.state then
+            SetVehicleIndicatorLights(vehicle, 0, true) -- Left
+            SetVehicleIndicatorLights(vehicle, 1, true) -- Right
+        else
+            SetVehicleIndicatorLights(vehicle, 0, false)
+            SetVehicleIndicatorLights(vehicle, 1, false)
+        end
+    end
+    cb('ok')
+end)
