@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #1a1a1a; /* Fallback */
+    /* Background image will be set here or via JS if you want */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+/* MUSIC PLAYER */
+.music-player {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(20, 20, 20, 0.7);
+    padding: 10px 15px;
+    border-radius: 6px;
+    color: white;
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.controls button:hover {
+    color: #3498db;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.volume-control input[type="range"] {
+    width: 100px;
+}
+
+/* SERVER INFO */
+.server-info-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#flagBtn {
+    background: rgba(20, 20, 20, 0.7);
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+#flagBtn:hover {
+    background: #3498db;
+    transform: scale(1.05);
+}
+
+#serverDescription {
+    margin-top: 10px;
+    background: rgba(15, 15, 15, 0.85);
+    color: #e0e0e0;
+    padding: 15px;
+    border-radius: 6px;
+    width: 250px;
+    font-size: 0.9rem;
+    text-align: left;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+    border-left: 3px solid #3498db;
+}
+
+#serverDescription.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+}
+
+#serverDescription h3 {
+    color: #3498db;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+/* DID YOU KNOW */
+.did-you-know {
+    position: absolute;
+    bottom: 80px; /* Moved down just above the loading bar */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+    color: white;
+    background: transparent;
+    padding: 20px;
+    min-width: 400px;
+    max-width: 600px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.info-icon-container {
+    width: 35px;
+    height: 35px;
+    background-color: #3498db;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 10px rgba(52, 152, 219, 0.3);
+}
+
+.info-icon-container i {
+    color: #1a1a1a;
+    font-size: 1.2rem;
+    font-weight: 800; /* Extra bold 'i' */
+}
+
+.did-you-know h2 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #3498db;
+    font-weight: 800; /* Extra bold header */
+}
+
+.did-you-know p {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    transition: opacity 0.5s ease;
+    font-weight: 400;
+}
+
+/* LOADING BAR */
+.loading-container {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.loading-bar-wrapper {
+    flex-grow: 1;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.loading-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #3498db; /* Blue color, NO box-shadow as requested */
+    border-radius: 8px;
+    transition: width 0.2s ease;
+}
+
+.loading-percentage {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 800; /* Extra bold percentage */
+    min-width: 60px;
+    text-align: right;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
